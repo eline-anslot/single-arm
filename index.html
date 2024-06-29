@@ -1,210 +1,1254 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Shower Presentation Engine</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <link rel="stylesheet" href="node_modules/@shower/ribbon/styles/styles.css">
+    <link rel="stylesheet" href="assets/styles/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script type="text/javascript" src="assets/scripts/buttons.js"></script>
+    <script type="text/javascript" src="assets/scripts/utils.js"></script>
+    <script type="text/javascript" src="assets/scripts/data.js"></script>
+    <script type="text/javascript" src="assets/scripts/plot.js"></script>
     <style>
         .shower {
             --slide-ratio: calc(16 / 9);
         }
+
+        /* Number */
     </style>
 </head>
+
 <body class="shower list">
 
     <header class="caption">
-        <h1>Shower Presentation Engine</h1>
-        <p>Yours Truly, Famous Inc.</p>
+        <h1>Improving interim decisions for single arm trials by adjusting for baseline covariates and short-term
+            endpoints</h1>
+        <p>Eline Anslot</p>
     </header>
 
-    <section class="slide" id="cover">
-        <h2>Shower Presentation Engine</h2>
-        <p>Brought to you by <a href="https://pepelsbey.net">Vadim Makeev</a></p>
+    <section class="slide clear" id="cover">
+        <h2>Improving interim decisions for single arm trials by adjusting for baseline covariates and short-term
+            endpoints</h2>
+        <p>Eline Anslot</a></p>
         <figure>
-            <img class="cover" src="pictures/cover.jpg" alt="Hands on the orange typewriter in a park">
-            <figcaption class="copyright right white">
-                <a href="https://fiftyfootshadows.net">© John Carey</a>
-            </figcaption>
+            <img class="place bottom left" style="width: 100px; margin: 0px 0px 10px 10px" src="pictures/ugent-en.png">
         </figure>
         <style>
             #cover h2 {
                 margin: 30px 0 0;
-                color: white;
+                color: black;
                 text-align: center;
-                font-size: 70px;
+                font-size: 50px;
             }
 
             #cover p {
                 margin: 10px 0 0;
                 text-align: center;
-                color: white;
+                color: black;
                 font-style: italic;
                 font-size: 20px;
             }
 
             #cover p a {
-                color: white;
+                color: black;
             }
         </style>
     </section>
 
     <section class="slide">
-        <h2>Shower key features</h2>
+        <h2>Table of content</h2>
         <ol>
-            <li>Built on HTML, CSS and JavaScript</li>
-            <li>Works in all modern browsers</li>
-            <li>Themes are separated from engine</li>
-            <li>Fully keyboard accessible</li>
-            <li>Printable to PDF</li>
+            <li>Single-arm trials combined with multi-stage designs</li>
+            <li>Proposed method</li>
+            <li>Simulations</li>
+            <li>Discussion</li>
         </ol>
-        <p class="note">Shower ['ʃəuə] noun. A person or thing that shows.</p>
     </section>
 
-    <section class="slide">
-        <h2>Plain text on your slides</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur <a href="#4">adipisicing</a> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <em>quis nostrud</em> exercitation ullamco laboris <strong>nisi ut aliquip</strong> ex ea commodo consequat. Duis aute irure <i>dolor</i> in reprehenderit in voluptate velit esse cillum <b>dolore</b> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in <code>&lt;culpa&gt;</code> qui officia deserunt mollit anim id est laborum.</p>
-    </section>
-
-    <section class="slide">
-        <h2>Two columns if you like</h2>
+    <section class="slide" id="single_arm">
+        <h2>Single-arm trials with multi-stage designs</h2>
         <div class="columns two">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
+            <div>
+                <svg id="single_arm"></svg>
+            </div>
+            <div>
+                <math display="block">
+                    <mrow>
+                        <msub>
+                            <mi>H</mi>
+                            <mn>0</mn>
+                        </msub>
+                        <mo lspace="0.2222em" rspace="0.2222em">:</mo>
+                        <mi>μ</mi>
+                        <mo>≤</mo>
+                        <msub>
+                            <mi>μ</mi>
+                            <mn>0</mn>
+                        </msub>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <msub>
+                            <mi>H</mi>
+                            <mn>1</mn>
+                        </msub>
+                        <mo lspace="0.2222em" rspace="0.2222em">:</mo>
+                        <mi>μ</mi>
+                        <mo>&gt;</mo>
+                        <msub>
+                            <mi>μ</mi>
+                            <mn>0</mn>
+                        </msub>
+                    </mrow>
+                </math>
+                <!-- <div class="button-group">
+                    <button type="button" onclick="all_interim(single_arm_plot, undefined)">At interim</button>
+                    <button type="button" onclick="show_all(single_arm_plot);">End of trial</button>
+                </div> -->
+            </div>
         </div>
     </section>
 
-    <section class="slide">
-        <h2>All kind of lists</h2>
-        <ol>
-            <li>Simple lists are marked with bullets</li>
-            <li>Ordered lists begin with a number</li>
-            <li>You can even nest lists one inside another
-                <ul>
-                    <li>Or mix their types</li>
-                    <li>But do not go too far</li>
-                    <li>Otherwise audience will be bored</li>
-                </ul>
-            </li>
-            <li>Look, seven rows exactly!</li>
-        </ol>
+    <section class="slide" id="reducing">
+        <h2>Reducing trial duration</h2>
+        <div class="columns two">
+            <div>
+                <svg id="reducing" class="data1"></svg>
+            </div>
+            <div class="button-group">
+                <button type="button" onclick="swap_data(reducing_trial_duration)">Continued/Stopped</button>
+                <!-- <button type="button" onclick="show_all(reducing_trial_duration)">Reset </button>            -->
+                <hr>
+                <button type="button" onclick="simon_two_stage(reducing_trial_duration)">Simon Two-Stage</button>
+                <button type="button" onclick="kunz_et_al(reducing_trial_duration)">Kunz et al.</button>
+                <button type="button" onclick="kunz_et_al(reducing_trial_duration)">Zocholl et al.</button>
+            </div>
+        </div>
     </section>
 
-    <section class="slide">
-        <h2>Serious citations</h2>
-        <figure>
-            <blockquote>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-            </blockquote>
-            <figcaption>Marcus Tullius Cicero</figcaption>
-        </figure>
+    <section class="slide" id="cov_adj">
+        <h2>Improving precision of the estimate</h2>
+        <div class="columns two">
+            <div>
+                <svg id="cov_adj"></svg>
+            </div>
+            <div class="button-group">
+                <button type="button" onclick="clear_button(covariate_adj_plot)">Reset </button>
+                <button type="button" onclick="unadj(covariate_adj_plot)">Unadjusted </button>
+                <button type="button" onclick="covariate_adj(covariate_adj_plot)">Covariate adjustment</button>
+            </div>
+        </div>
     </section>
 
-    <section class="slide">
-        <h2>Code samples</h2>
-        <pre>
-            <code>&lt;!DOCTYPE html&gt;</code>
-            <code class="mark">&lt;html lang="en"&gt;</code>
-            <code><mark>&lt;head&gt;</mark> <span class="comment">&lt;!--Comment--&gt;</span></code>
-            <code>    &lt;title&gt;Shower&lt;/title&gt;</code>
-            <code>    &lt;meta charset="<mark class="important">UTF-8</mark>"&gt;</code>
-            <code>    &lt;link rel="stylesheet" href="screen.css"&gt;</code>
-            <code><mark>&lt;/head&gt;</mark></code>
-        </pre>
+    <section class="slide" id="simon">
+        <h2>Simon's two-stage at interim</h2>
+        <div class="columns two">
+            <div>
+                <!-- <button type="button" onclick="all_interim(simon_plot, undefined)">interim</button>
+                <button type="button" onclick="show_all(simon_plot)">all</button> -->
+                <svg id="simon"></svg>
+            </div>
+            <div>
+                <math display="block">
+                    <mrow>
+                        <msub>
+                            <mn>s</mn>
+                            <mi>1</mi>
+                        </msub>
+                        <mo>=</mo>
+                        <munderover>
+                            <mo>∑</mo>
+                            <mrow>
+                                <mi>i</mi>
+                                <mo>=</mo>
+                                <mn>1</mn>
+                            </mrow>
+                            <mrow>
+                                <msub>
+                                    <mn>n</mn>
+                                    <mi>1</mi>
+                                </msub>
+                            </mrow>
+                        </munderover>
+                        <msub class="outcome" id="outcome-simon">
+                            <mi>y</mi>
+                            <mi>i</mi>
+                        </msub>
+                </math>
+                <math display="block">
+                    <mtext mathvariant="bold">Decision at interim: </mtext>
+                    <mspace width="5px"></mspace>
+                    <mrow>
+                        <msub>
+                            <mi>s</mi>
+                            <mn>1</mn>
+                        </msub>
+                        <mo>≤</mo>
+                        <msub>
+                            <mi>r</mi>
+                            <mn>1</mn>
+                        </msub>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mtext>with</mtext>
+                    <mspace width="5px"></mspace>
+                    <mrow>
+                        <mi>P</mi>
+                        <mi>E</mi>
+                        <mi>T</mi>
+                        <mo form="prefix" stretchy="false">(</mo>
+                        <msub>
+                            <mi>μ</mi>
+                            <mn>0</mn>
+                        </msub>
+                        <mo form="postfix" stretchy="false">)</mo>
+                        <mo>=</mo>
+                        <mi>P</mi>
+                        <mo form="prefix" stretchy="false">(</mo>
+                        <msub>
+                            <mi>s</mi>
+                            <mn>1</mn>
+                        </msub>
+                        <mo>≤</mo>
+                        <msub>
+                            <mi>r</mi>
+                            <mn>1</mn>
+                        </msub>
+                        <mi>|</mi>
+                        <msub>
+                            <mi>μ</mi>
+                            <mn>0</mn>
+                        </msub>
+                        <mo form="postfix" stretchy="false">)</mo>
+                    </mrow>
+                </math>
+            </div>
+        </div>
     </section>
 
-    <section class="slide">
-        <h2>Even tables</h2>
+
+    <!-- <section class="slide" id="gsb" display = "hidden">
+        <h2>Group Sequential Designs</h2>
+        <div class="columns two">
+            <div>
+                <svg id="gsb"></svg>
+            </div>
+            <div>
+                <math display="block">
+                    <mrow>
+                        <msub>
+                            <mover>
+                                <mi>μ</mi>
+                                <mo stretchy="false" class="tml-xshift" style="math-style:normal;math-depth:0;">^</mo>
+                            </mover>
+                            <mrow>
+                                <mi>u</mi>
+                                <mi>n</mi>
+                                <mi>a</mi>
+                                <mi>d</mi>
+                                <mi>j</mi>
+                            </mrow>
+                        </msub>
+                        <mo>=</mo>
+                        <mfrac>
+                            <mn>1</mn>
+                            <msub>
+                                <mi>n</mi>
+                                <mrow>
+                                    <mi>1</mi>
+                                </mrow>
+                            </msub>
+                        </mfrac>
+                        <mrow>
+                            <munderover>
+                                <mo movablelimits="false">∑</mo>
+                                <mrow>
+                                    <mi>i</mi>
+                                    <mo>=</mo>
+                                    <mn>1</mn>
+                                </mrow>
+                                <msub>
+                                    <mi>n</mi>
+                                    <mrow>
+                                        <mi>1</mi>
+                                    </mrow>
+                                </msub>
+                            </munderover>
+                        </mrow>
+                        <msub class="outcome" id="outcome-gsb">
+                            <mi>y</mi>
+                            <mi>i</mi>
+                        </msub>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mtext mathvariant="bold">Decision at interim:</mtext>
+                    <mspace width="5px"></mspace>
+                    <mrow>
+                        <mi>Z</mi>
+                        <mo>≤</mo>
+                        <msup>
+                            <mi>ϕ</mi>
+                            <mrow>
+                                <mo form="prefix" stretchy="false" lspace="0em" rspace="0em">−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                        </msup>
+                        <mo form="prefix" stretchy="false">[</mo>
+                        <msub>
+                            <mi>α</mi>
+                            <mn>1</mn>
+                        </msub>
+                        <mo form="postfix" stretchy="false">]</mo>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mtext>with</mtext>
+                    <mspace width="5px"></mspace>
+                    <mrow>
+                        <mi>Z</mi>
+                        <mo>=</mo>
+                        <mfrac>
+                            <mrow>
+                                <msub>
+                                    <mover>
+                                        <mi>μ</mi>
+                                        <mo stretchy="false" class="tml-xshift" style="math-style:normal;math-depth:0;">
+                                            ^</mo>
+                                    </mover>
+                                    <mrow>
+                                        <mi>u</mi>
+                                        <mi>n</mi>
+                                        <mi>a</mi>
+                                        <mi>d</mi>
+                                        <mi>j</mi>
+                                    </mrow>
+                                </msub>
+                                <mo>−</mo>
+                                <msub>
+                                    <mi>μ</mi>
+                                    <mn>0</mn>
+                                </msub>
+                            </mrow>
+                            <mrow>
+                                <mi>S</mi>
+                                <mi>E</mi>
+                                <mo form="prefix" stretchy="false">(</mo>
+                                <msub>
+                                    <mover>
+                                        <mi>μ</mi>
+                                        <mo stretchy="false" class="tml-xshift" style="math-style:normal;math-depth:0;">
+                                            ^</mo>
+                                    </mover>
+                                    <mrow>
+                                        <mi>u</mi>
+                                        <mi>n</mi>
+                                        <mi>a</mi>
+                                        <mi>d</mi>
+                                        <mi>j</mi>
+                                    </mrow>
+                                </msub>
+                                <mo form="postfix" stretchy="false" lspace="0em" rspace="0em">)</mo>
+                            </mrow>
+                        </mfrac>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mtext>and</mtext>
+                    <mspace width="5px"></mspace>
+                    <mrow>
+                        <mi>α</mi>
+                        <mo>=</mo>
+                        <msub>
+                            <mi>α</mi>
+                            <mn>1</mn>
+                        </msub>
+                        <mo>+</mo>
+                        <msub>
+                            <mi>α</mi>
+                            <mn>2</mn>
+                        </msub>
+                    </mrow>
+                </math>
+            </div>
+    </section> -->
+
+    <section class="slide" id="proposed">
+        <h2>Proposed method</h2>
+        <div class="columns two">
+            <div>
+                <!-- <button type="button" onclick="all_interim(simon_plot, undefined)">interim</button>
+                <button type="button" onclick="show_all(simon_plot)">all</button> -->
+                <svg id="proposed"></svg>
+            </div>
+            <div>
+                <math display="block">
+                    <mtext mathvariant="bold">Model fitting, working model 1:</mtext>
+                </math>
+                <math display="block">
+                    <mspace width="5px"></mspace>
+                    <mrow>
+                        <mi>h</mi>
+                        <mo form="prefix" stretchy="false">[</mo>
+                        <mi>E</mi>
+                        <mo form="prefix" stretchy="false">(</mo>
+                        <mi>Y</mi>
+                        <mi>|</mi>
+                        <mi>𝐗</mi>
+                        <mo separator="true">,</mo>
+                        <mi>S</mi>
+                        <mo form="prefix" stretchy="false">)</mo>
+                        <mo form="postfix" stretchy="false">]</mo>
+                        <mo>=</mo>
+                        <msub>
+                            <mi>β</mi>
+                            <mn>0</mn>
+                        </msub>
+                        <mo>+</mo>
+                        <mrow>
+                            <msub>
+                                <mi>𝛃</mi>
+                                <mn>𝟏</mn>
+                            </msub>
+                            <mi class="baseline" id=x_gr1> 𝐗</mi>
+                        </mrow>
+                        <mo>+</mo>
+                        <msub>
+                            <mi>β</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mi class="short" id="s_gr1">S</mi>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mtext mathvariant="bold">Predicting:</mtext>
+                    <mspace width="5px"></mspace>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <mover class="pred_y1" id="predY1">
+                            <mi>Y</mi>
+                            <mo stretchy="false" class="tml-capshift" style="math-style:normal;math-depth:0;">^</mo>
+                        </mover>
+                        <mo>=</mo>
+                        <msup>
+                            <mi>h</mi>
+                            <mrow>
+                                <mo form="prefix" stretchy="false" lspace="0em" rspace="0em">−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                        </msup>
+                        <mrow>
+                            <mo fence="true" form="prefix">[</mo>
+                            <mover>
+                                <msub>
+                                    <mi>β</mi>
+                                    <mn>0</mn>
+                                </msub>
+                                <mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo>
+                            </mover>
+                            <mo>+</mo>
+                            <mover>
+                                <msub>
+                                    <mi>𝛃</mi>
+                                    <mn>𝟏</mn>
+                                </msub>
+                                <mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo>
+                            </mover>
+                            <mi class="baseline" id=x_gr1_2>𝐗</mi>
+                            <mo>+</mo>
+                            <msub>
+                                <mover>
+                                    <mi>β</mi>
+                                    <mo stretchy="false" class="tml-capshift" style="math-style:normal;math-depth:0;">^
+                                    </mo>
+                                </mover>
+                                <mn>2</mn>
+                            </msub>
+                            <mi class="short" id="s_gr1_2">S</mi>
+                            <mo fence="true" form="postfix">]</mo>
+                        </mrow>
+                    </mrow>
+                </math>
+            </div>
+    </section>
+
+
+    <section class="slide" id="proposed2">
+        <h2>Proposed method</h2>
+        <div class="columns two">
+            <div>
+                <!-- <button type="button" onclick="all_interim(simon_plot, undefined)">interim</button>
+                <button type="button" onclick="show_all(simon_plot)">all</button> -->
+                <svg id="proposed2"></svg>
+            </div>
+            <div>
+                <math display="block">
+                    <mtext mathvariant="bold">Model fitting, working model 2:</mtext>
+                    <mspace width="5px"></mspace>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <mi>g</mi>
+                        <mo form="prefix" stretchy="false">[</mo>
+                        <mi>E</mi>
+                        <mo form="prefix" stretchy="false">(</mo>
+                        <mover class="pred_y1" id="predY12">
+                            <mi>Y</mi>
+                            <mo stretchy="false" class="tml-capshift" style="math-style:normal;math-depth:0;">^</mo>
+                        </mover>
+                        <mi>|</mi>
+                        <mi>𝐗</mi>
+                        <mo form="prefix" stretchy="false">)</mo>
+                        <mo form="postfix" stretchy="false">]</mo>
+                        <mo>=</mo>
+                        <msub>
+                            <mi>γ</mi>
+                            <mn>0</mn>
+                        </msub>
+                        <mo>+</mo>
+                        <mrow>
+                            <msub>
+                                <mi>𝛄</mi>
+                                <mn>𝟏</mn>
+                            </msub>
+                            <mi class="baseline" id="x_gr12">𝐗</mi>
+                        </mrow>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mtext mathvariant="bold">Predicting:</mtext>
+                    <mspace width="5px"></mspace>
+                </math> <math display="block">
+                    <mrow>
+                        <mover class="pred_y1" id="predY123">
+                            <mi>Y</mi>
+                            <mo stretchy="false" class="tml-capshift" style="math-style:normal;math-depth:0;">^</mo>
+                        </mover>
+                        <msup>
+                            <mrow></mrow>
+                            <mo lspace="0em" rspace="0em" class="tml-prime">′</mo>
+                        </msup>
+                        <mo>=</mo>
+                        <msup>
+                            <mi>g</mi>
+                            <mrow>
+                                <mo form="prefix" stretchy="false" lspace="0em" rspace="0em">−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                        </msup>
+                        <mrow>
+                            <mo fence="true" form="prefix">[</mo>
+                            <mover>
+                                <msub>
+                                    <mi>γ</mi>
+                                    <mn>0</mn>
+                                </msub>
+                                <mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo>
+                            </mover>
+                            <mo>+</mo>
+                            <mover>
+                                <msub>
+                                    <mi>𝛄</mi>
+                                    <mn>𝟏</mn>
+                                </msub>
+                                <mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo>
+                            </mover>
+                            <mi class="baseline" id="x_gr123">𝐗</mi>
+                            <mo fence="true" form="postfix">]</mo>
+                        </mrow>
+                    </mrow>
+                </math>
+            </div>
+    </section>
+
+    <!-- <section class="slide" id="proposed3">
+        <h2>Proposed method - Estimate</h2>
+        <div class="columns two">
+            <div style="width: 323px;">
+                <svg id="proposed3"></svg>
+            </div>
+            <div>
+                <math display="block">
+                    <mrow>
+                        <msub>
+                            <mover>
+                                <mi>μ</mi>
+                                <mo stretchy="false" class="tml-xshift" style="math-style:normal;math-depth:0;">^</mo>
+                            </mover>
+                            <mrow>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>t</mi>
+                            </mrow>
+                        </msub>
+                        <mo>=</mo>
+                        <mfrac>
+                            <mn>1</mn>
+                            <msub>
+                                <mi>n</mi>
+                                <mrow>
+                                    <mi>i</mi>
+                                    <mi>n</mi>
+                                    <mi>t</mi>
+                                </mrow>
+                            </msub>
+                        </mfrac>
+                        <mrow>
+                            <munderover>
+                                <mo movablelimits="false">∑</mo>
+                                <mrow>
+                                    <mi>i</mi>
+                                    <mo>=</mo>
+                                    <mn>1</mn>
+                                </mrow>
+                                <msub>
+                                    <mi>n</mi>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mi>n</mi>
+                                        <mi>t</mi>
+                                    </mrow>
+                                </msub>
+                            </munderover>
+                        </mrow>
+                        <msubsup>
+                            <mover class="pred_y1" id="predY123-21">
+                                <mi>Y</mi>
+                                <mo stretchy="false" class="tml-capshift" style="math-style:normal;math-depth:0;">^</mo>
+                            </mover>
+                            <mi>i</mi>
+                            <msup>
+                                <mrow></mrow>
+                                <mo lspace="0em" rspace="0em" class="tml-prime">′</mo>
+                            </msup>
+                        </msubsup>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <mi>S</mi>
+                        <mi>E</mi>
+                        <mo fence="false" symmetric="true" minsize="1.2em" maxsize="1.2em">(</mo>
+                        <msub>
+                            <mover>
+                                <mi>μ</mi>
+                                <mo stretchy="false" class="tml-xshift" style="math-style:normal;math-depth:0;">^</mo>
+                            </mover>
+                            <mrow>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>t</mi>
+                            </mrow>
+                        </msub>
+                        <mo fence="false" symmetric="true" minsize="1.2em" maxsize="1.2em">)</mo>
+                        <mo>=</mo>
+                        <msqrt>
+                            <mfrac>
+                                <mrow>
+                                    <mover>
+                                        <mrow>
+                                            <mi>v</mi>
+                                            <mi>a</mi>
+                                            <mi>r</mi>
+                                        </mrow>
+                                        <mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo>
+                                    </mover>
+                                    <mrow>
+                                        <mo fence="true" form="prefix">[</mo>
+                                        <mfrac>
+                                            <msubsup>
+                                                <mi>C</mi>
+                                                <mi>i</mi>
+                                                <mi>Y</mi>
+                                            </msubsup>
+                                            <msup>
+                                                <mover>
+                                                    <mi>π</mi>
+                                                    <mo stretchy="false" class="tml-xshift"
+                                                        style="math-style:normal;math-depth:0;">^</mo>
+                                                </mover>
+                                                <mi>Y</mi>
+                                            </msup>
+                                        </mfrac>
+                                        <mo form="prefix" stretchy="false">(</mo>
+                                        <msub class="outcome" id="outcome-proposed3">
+                                            <mi>Y</mi>
+                                            <mi>i</mi>
+                                        </msub>
+                                        <mo>−</mo>
+                                        <msub>
+                                            <mover class="pred_y1" id="predY12-2">
+                                                <mi>Y</mi>
+                                                <mo stretchy="false" class="tml-capshift"
+                                                    style="math-style:normal;math-depth:0;">^</mo>
+                                            </mover>
+                                            <mi>i</mi>
+                                        </msub>
+                                        <mo form="postfix" stretchy="false">)</mo>
+                                        <mo>+</mo>
+                                        <mfrac>
+                                            <msubsup>
+                                                <mi>C</mi>
+                                                <mi>i</mi>
+                                                <mi>S</mi>
+                                            </msubsup>
+                                            <msup>
+                                                <mover>
+                                                    <mi>π</mi>
+                                                    <mo stretchy="false" class="tml-xshift"
+                                                        style="math-style:normal;math-depth:0;">^</mo>
+                                                </mover>
+                                                <mi>S</mi>
+                                            </msup>
+                                        </mfrac>
+                                        <mo form="prefix" stretchy="false">(</mo>
+                                        <msub>
+                                            <mover class="pred_y1" id="predY12-22">
+                                                <mi>Y</mi>
+                                                <mo stretchy="false" class="tml-capshift"
+                                                    style="math-style:normal;math-depth:0;">^</mo>
+                                            </mover>
+                                            <mi>i</mi>
+                                        </msub>
+                                        <mo>−</mo>
+                                        <msubsup>
+                                            <mover class="pred_y1" id="predY123-22">
+                                                <mi>Y</mi>
+                                                <mo stretchy="false" class="tml-capshift"
+                                                    style="math-style:normal;math-depth:0;">^</mo>
+                                            </mover>
+                                            <mi>i</mi>
+                                            <msup>
+                                                <mrow></mrow>
+                                                <mo lspace="0em" rspace="0em" class="tml-prime">′</mo>
+                                            </msup>
+                                        </msubsup>
+                                        <mo form="postfix" stretchy="false">)</mo>
+                                        <mo>+</mo>
+                                        <msubsup>
+                                            <mover class="pred_y1" id="predY123-23">
+                                                <mi>Y</mi>
+                                                <mo stretchy="false" class="tml-capshift"
+                                                    style="math-style:normal;math-depth:0;">^</mo>
+                                            </mover>
+                                            <mi>i</mi>
+                                            <msup>
+                                                <mrow></mrow>
+                                                <mo lspace="0em" rspace="0em" class="tml-prime">′</mo>
+                                            </msup>
+                                        </msubsup>
+                                        <mo fence="true" form="postfix">]</mo>
+                                    </mrow>
+                                </mrow>
+                                <msub>
+                                    <mi>n</mi>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mi>n</mi>
+                                        <mi>t</mi>
+                                    </mrow>
+                                </msub>
+                            </mfrac>
+                        </msqrt>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mtext>with </mtext>
+                    <mspace width="5px"></mspace>
+                    <mrow>
+                        <msub>
+                            <mi>n</mi>
+                            <mrow>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>t</mi>
+                            </mrow>
+                        </msub>
+                        <mo>=</mo>
+                        <msub>
+                            <mi>n</mi>
+                            <mn>1</mn>
+                        </msub>
+                        <mo>+</mo>
+                        <msub>
+                            <mi>n</mi>
+                            <mrow>
+                                <mi>b</mi>
+                                <mi>a</mi>
+                                <mi>s</mi>
+                                <mi>e</mi>
+                                <mi>l</mi>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>e</mi>
+                            </mrow>
+                        </msub>
+                        <mo>+</mo>
+                        <msub>
+                            <mi>n</mi>
+                            <mrow>
+                                <mi>s</mi>
+                                <mi>h</mi>
+                                <mi>o</mi>
+                                <mi>r</mi>
+                                <mi>t</mi>
+                            </mrow>
+                        </msub>
+                    </mrow>
+                </math>
+            </div>
+    </section> -->
+
+    <section class="slide" id="proposed3">
+        <h2>Proposed method - Decision at interim</h2>
+        <div class="columns two">
+            <div>
+                <math display="block">
+                    <mtext mathvariant="bold">Decision at interim:</mtext>
+                    <mspace width="5px"></mspace>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <msub>
+                            <mi>Z</mi>
+                            <mrow>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>t</mi>
+                            </mrow>
+                        </msub>
+                        <mo>=</mo>
+                        <mfrac>
+                            <mrow>
+                                <msub>
+                                    <mover>
+                                        <mi>μ</mi>
+                                        <mo stretchy="false" class="tml-xshift" style="math-style:normal;math-depth:0;">
+                                            ^</mo>
+                                    </mover>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mi>n</mi>
+                                        <mi>t</mi>
+                                    </mrow>
+                                </msub>
+                                <mo>−</mo>
+                                <msub>
+                                    <mi>μ</mi>
+                                    <mn>0</mn>
+                                </msub>
+                            </mrow>
+                            <mrow>
+                                <mi>S</mi>
+                                <mi>E</mi>
+                                <mo fence="false" symmetric="true" minsize="1.2em" maxsize="1.2em">(</mo>
+                                <msub>
+                                    <mover>
+                                        <mi>μ</mi>
+                                        <mo stretchy="false" class="tml-xshift" style="math-style:normal;math-depth:0;">
+                                            ^</mo>
+                                    </mover>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mi>n</mi>
+                                        <mi>t</mi>
+                                    </mrow>
+                                </msub>
+                                <mo fence="false" symmetric="true" minsize="1.2em" maxsize="1.2em">)</mo>
+                            </mrow>
+                        </mfrac>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <msub>
+                            <mi>Z</mi>
+                            <mrow>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>t</mi>
+                            </mrow>
+                        </msub>
+                        <mo>≤</mo>
+                        <msup>
+                            <mi>ϕ</mi>
+                            <mrow>
+                                <mo form="prefix" stretchy="false" lspace="0em" rspace="0em">−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                        </msup>
+                        <mo form="prefix" stretchy="false">[</mo>
+                        <msubsup>
+                            <mi>α</mi>
+                            <mrow>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>t</mi>
+                            </mrow>
+                            <mo form="prefix" stretchy="false">*</mo>
+                        </msubsup>
+                        <mo form="postfix" stretchy="false">]</mo>
+                    </mrow>
+                </math>
+            </div>
+            <div>
+                <math display="block">
+                    <mtext mathvariant="bold">In Simon's Two-Stage:</mtext>
+                    <mspace width="5px"></mspace>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <msub>
+                            <mi>Z</mi>
+                            <mrow>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>t</mi>
+                            </mrow>
+                        </msub>
+                        <mo>≤</mo>
+                        <msup>
+                            <mi>ϕ</mi>
+                            <mrow>
+                                <mo form="prefix" stretchy="false" lspace="0em" rspace="0em">−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                        </msup>
+                        <mo form="prefix" stretchy="false">[</mo>
+                        <mi>P</mi>
+                        <mi>E</mi>
+                        <mi>T</mi>
+                        <mo form="prefix" stretchy="false">(</mo>
+                        <msub>
+                            <mi>&mu;</mi>
+                            <mn>0</mn>
+                        </msub>
+                        <mo form="postfix" stretchy="false">)</mo>
+                        <mo form="postfix" stretchy="false">]</mo>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mtext mathvariant="bold">In Group Sequential Design:</mtext>
+                    <mspace width="5px"></mspace>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <msub>
+                            <mi>Z</mi>
+                            <mrow>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>t</mi>
+                            </mrow>
+                        </msub>
+                        <mo>≤</mo>
+                        <msup>
+                            <mi>ϕ</mi>
+                            <mrow>
+                                <mo form="prefix" stretchy="false" lspace="0em" rspace="0em">−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                        </msup>
+                        <mo form="prefix" stretchy="false">[</mo>
+                        <msub>
+                            <mi>α</mi>
+                            <mn>1</mn>
+                        </msub>
+                        <mo form="postfix" stretchy="false">]</mo>
+                </math>
+                <math display="block">
+                    <mtext>and</mtext>
+                    <mspace width="5px"></mspace>
+                    <mrow>
+                        <mi>α</mi>
+                        <mo>=</mo>
+                        <msub>
+                            <mi>α</mi>
+                            <mn>1</mn>
+                        </msub>
+                        <mo>+</mo>
+                        <msub>
+                            <mi>α</mi>
+                            <mn>2</mn>
+                        </msub>
+                    </mrow>
+                </math>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="slide">
+        <h2>Simulations - Setting</h2>
         <table>
-        <tr>
-            <th scope="col">Locavore</th>
-            <th>Umami</th>
-            <th>Helvetica</th>
-            <th>Vegan</th>
-        </tr>
-        <tr>
-            <th scope="row">Fingerstache</th>
-            <td>Kale</td>
-            <td>Chips</td>
-            <td>Keytar</td>
-        </tr>
-        <tr>
-            <th scope="row">Sriracha</th>
-            <td>Gluten-free</td>
-            <td>Ennui</td>
-            <td>Keffiyeh</td>
-        </tr>
-        <tr>
-            <th scope="row">Thundercats</th>
-            <td>Jean</td>
-            <td>Shorts</td>
-            <td>Biodiesel</td>
-        </tr>
-        <tr>
-            <th scope="row">Terry</th>
-            <td>Richardson</td>
-            <td>Swag</td>
-            <td>Blog</td>
-        </tr>
+            <tr>
+                <th scope="col">Design</th>
+                <th>&mu;<sub>1</sub></th>
+                <th>&mu;<sub>0</sub></th>
+                <th>n</th>
+                <th>n<sub>1</sub></th>
+                <th>PET(&mu;<sub>0</sub>)</th>
+            </tr>
+            <tr>
+                <th scope="row">1</th>
+                <td>0.45</td>
+                <td>0.25</td>
+                <td>41</td>
+                <td>17</td>
+                <td>.7653 </td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>0.35</td>
+                <td>0.25</td>
+                <td>149</td>
+                <td>56</td>
+                <td>.6853</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>0.30</td>
+                <td>0.25</td>
+                <td>522</td>
+                <td>223</td>
+                <td>.6112 </td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>0.28</td>
+                <td>0.25</td>
+                <td>1366</td>
+                <td>749</td>
+                <td>.6423</td>
+            </tr>
         </table>
-        <p>It’s good to have information organized.</p>
-    </section>
+    </section> -->
 
-    <section class="slide" id="picture">
-        <h2>Pictures</h2>
-        <figure>
-            <img class="cover" src="pictures/picture.jpg" alt="Orange typewriter on a wooden table close-up">
-            <figcaption class="copyright right white">
-                <a href="https://fiftyfootshadows.net">© John Carey</a>
-            </figcaption>
-        </figure>
-        <style>
-            #picture h2 {
-                color: white;
-            }
-        </style>
+    <section class="slide">
+        <h2 style = "margin-bottom: 5px;">Simulations - Under the null hypothesis</h2>
+        <div>
+            <img width="700" id="setting1_Alpha">
+            <script>
+                rotate_through_images("setting1_Alpha", [
+                    "assets/images/setting1_prt_Type I error_1.png",
+                    "assets/images/setting1_prt_Type I error_2.png",
+                    "assets/images/setting1_prt_Type I error_3.png",
+                    "assets/images/setting1_prt_Type I error_4.png"
+                ])</script>
+        </div>
+            <!-- 
+            <div>
+                <math display="block">
+                    <mtext>Proportion</mtext>
+                    <mspace width="10px"></mspace>
+                    <msub>
+                        <mi>n</mi>
+                        <mrow>
+                            <mi>e</mi>
+                            <mi>x</mi>
+                            <mi>t</mi>
+                            <mi>r</mi>
+                            <mi>a</mi>
+                        </mrow>
+                    </msub>
+                    <mtext>:</mtext>
+                    <mspace width="5px"></mspace>
+                    <mfrac>
+                        <msub>
+                            <mi>n</mi>
+                            <mrow>
+                                <mi>e</mi>
+                                <mi>x</mi>
+                                <mi>t</mi>
+                                <mi>r</mi>
+                                <mi>a</mi>
+                            </mrow>
+                        </msub>
+                        <mrow>
+                            <mo form="prefix" stretchy="false" lspace="0em" rspace="0em">(</mo>
+                            <msub>
+                                <mi>n</mi>
+                                <mn>1</mn>
+                            </msub>
+                            <mo>+</mo>
+                            <mtext>
+                            </mtext>
+                            <msub>
+                                <mi>n</mi>
+                                <mrow>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mi>r</mi>
+                                    <mi>a</mi>
+                                </mrow>
+                            </msub>
+                            <mo form="postfix" stretchy="false" lspace="0em" rspace="0em">)</mo>
+                        </mrow>
+                    </mfrac>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <msub>
+                            <mi>n</mi>
+                            <mrow>
+                                <mi>e</mi>
+                                <mi>x</mi>
+                                <mi>t</mi>
+                                <mi>r</mi>
+                                <mi>a</mi>
+                            </mrow>
+                        </msub>
+                        <mo>=</mo>
+                        <msub>
+                            <mi>n</mi>
+                            <mrow>
+                                <mi>b</mi>
+                                <mi>a</mi>
+                                <mi>s</mi>
+                                <mi>e</mi>
+                                <mi>l</mi>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>e</mi>
+                            </mrow>
+                        </msub>
+                        <mo>+</mo>
+                        <msub>
+                            <mi>n</mi>
+                            <mrow>
+                                <mi>s</mi>
+                                <mi>h</mi>
+                                <mi>o</mi>
+                                <mi>r</mi>
+                                <mi>t</mi>
+                            </mrow>
+                        </msub>
+                    </mrow>
+                </math>
+            </div> -->
     </section>
 
     <section class="slide">
-        <h2 class="shout shrink">You can even shout this way</h2>
+        <h2 style = "margin-bottom: 5px;">Simulations - Under the alternative hypothesis</h2>
+        <div>
+            <img width="700" id="setting1_Power">
+            <script>
+                rotate_through_images("setting1_Power", [
+                    "assets/images/setting1_prt_Power_1.png",
+                    "assets/images/setting1_prt_Power_2.png",
+                    "assets/images/setting1_prt_Power_3.png",
+                    "assets/images/setting1_prt_Power_4.png"
+                ])</script>
+        </div>
+            <!-- <div>
+                <math display="block">
+                    <mtext>Proportion</mtext>
+                    <mspace width="10px"></mspace>
+                    <msub>
+                        <mi>n</mi>
+                        <mrow>
+                            <mi>e</mi>
+                            <mi>x</mi>
+                            <mi>t</mi>
+                            <mi>r</mi>
+                            <mi>a</mi>
+                        </mrow>
+                    </msub>
+                    <mtext>:</mtext>
+                    <mspace width="5px"></mspace>
+                    <mfrac>
+                        <msub>
+                            <mi>n</mi>
+                            <mrow>
+                                <mi>e</mi>
+                                <mi>x</mi>
+                                <mi>t</mi>
+                                <mi>r</mi>
+                                <mi>a</mi>
+                            </mrow>
+                        </msub>
+                        <mrow>
+                            <mo form="prefix" stretchy="false" lspace="0em" rspace="0em">(</mo>
+                            <msub>
+                                <mi>n</mi>
+                                <mn>1</mn>
+                            </msub>
+                            <mo>+</mo>
+                            <mtext>
+                            </mtext>
+                            <msub>
+                                <mi>n</mi>
+                                <mrow>
+                                    <mi>e</mi>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                    <mi>r</mi>
+                                    <mi>a</mi>
+                                </mrow>
+                            </msub>
+                            <mo form="postfix" stretchy="false" lspace="0em" rspace="0em">)</mo>
+                        </mrow>
+                    </mfrac>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <msub>
+                            <mi>n</mi>
+                            <mrow>
+                                <mi>e</mi>
+                                <mi>x</mi>
+                                <mi>t</mi>
+                                <mi>r</mi>
+                                <mi>a</mi>
+                            </mrow>
+                        </msub>
+                        <mo>=</mo>
+                        <msub>
+                            <mi>n</mi>
+                            <mrow>
+                                <mi>b</mi>
+                                <mi>a</mi>
+                                <mi>s</mi>
+                                <mi>e</mi>
+                                <mi>l</mi>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>e</mi>
+                            </mrow>
+                        </msub>
+                        <mo>+</mo>
+                        <msub>
+                            <mi>n</mi>
+                            <mrow>
+                                <mi>s</mi>
+                                <mi>h</mi>
+                                <mi>o</mi>
+                                <mi>r</mi>
+                                <mi>t</mi>
+                            </mrow>
+                        </msub>
+                    </mrow>
+                </math>
+            </div> -->
     </section>
 
     <section class="slide">
-        <h2>Inner navigation</h2>
-        <ol>
-            <li>Lets you reveal list items one by one</li>
-            <li class="next">To keep some key points</li>
-            <li class="next">In secret from audience</li>
-            <li class="next">But it will work only once</li>
-            <li class="next">Nobody wants to see the same joke twice</li>
-        </ol>
+        <h2 style = "margin-bottom: 5px;">Simulations - Model mispecification</h2>
+        <div>
+            <img width="700" src="assets/images/setting2.png">
+        </div>
     </section>
-
-    <section class="slide" id="see-more">
-        <h2 class="shout">
-            <img src="pictures/logo.svg" alt="Shower logo">
-            <a href="https://github.com/shower/shower">See more on GitHub</a>
-        </h2>
-        <style>
-            #see-more h2 {
-                font-size: 100px
-            }
-
-            #see-more img {
-                width: 0.72em;
-                height: 0.72em;
-            }
-        </style>
-    </section>
-
-    <footer class="badge">
-        <a href="https://github.com/shower/shower">Fork me on GitHub</a>
-    </footer>
 
     <div class="progress"></div>
-
     <script src="node_modules/@shower/core/dist/shower.js"></script>
     <!-- Copyright © 3000 Yours Truly, Famous Inc. -->
 
 </body>
+
 </html>
