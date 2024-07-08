@@ -1,0 +1,112 @@
+.pulse {
+    /* fill: #ff4f81; */
+    animation: pulse2 1s ease-in-out infinite;
+}
+
+.pulse_ypred {
+    /* fill: #ff4f81; */
+    animation: pulse_ypred 1s ease-in-out infinite;
+}
+
+.outcome {
+    border-width: 3px;
+    border-style: solid;
+    border-color: #ffffff00;
+    padding: 5px;
+}
+
+.outcome:hover {
+    border-color: #332288;
+    border-radius: 100%;
+    border-style: solid;
+}
+
+.pred_y1 {
+    border-width: 3px;
+    border-style: dashed;
+    border-color: #ffffff00;
+    padding: 5px;
+}
+
+.pred_y1:hover {
+    border-color: #332288;
+    border-radius: 100%;
+    border-style: dashed;
+}
+
+svg#proposed3 {
+    scale: 62%;
+    position: absolute;
+    transform: translate(-251px, -7px);
+}
+
+.baseline {
+    border-width: 3px;
+    border-style: solid;
+    border-color: #ffffff00;
+    padding: 5px;
+}
+
+.baseline:hover {
+    border-color: #117733;
+    border-radius: 100%;
+    border-style: solid;
+}
+
+.short {
+    border-width: 3px;
+    border-style: solid;
+    border-color: #ffffff00;
+    padding: 5px;
+}
+
+.short:hover {
+    border-color: #AA4499;
+    border-radius: 100%;
+    border-style: solid;
+}
+
+@keyframes pulse2 {
+    0% {
+        transform-box: fill-box;
+        opacity: .2;
+        -webkit-transform: scale(1);
+        -webkit-transform-origin: 50% 50%;
+    }
+
+    100% {
+        opacity: 1;
+        transform-box: fill-box;
+        -webkit-transform: scale(1.5);
+        -webkit-transform-origin: 50% 50%;
+    }
+}
+
+@keyframes pulse_ypred {
+    0% {
+        transform-box: fill-box;
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -webkit-transform-origin: 50% 50%;
+        stroke: #332288;
+        fill: white;
+    }
+
+    50% {
+        opacity: 1;
+        transform-box: fill-box;
+        -webkit-transform: scale(1.5);
+        -webkit-transform-origin: 50% 50%;
+        stroke: #332288;
+        fill: white;
+    }
+
+    100% {
+        transform-box: fill-box;
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -webkit-transform-origin: 50% 50%;
+        stroke: #332288;
+        fill: white;
+    }
+}
