@@ -33,6 +33,7 @@
         <h2>Improving interim decisions for single arm trials by adjusting for baseline covariates and short-term
             endpoints</h2>
         <p>Eline Anslot</a></p>
+        <p>Joint work with Kelly Van Lancker</p>
         <img class="place bottom left" style="width: 100px; margin: 0px 0px 10px 10px" src="pictures/ugent-en.png">
         <style>
             #cover h2 {
@@ -114,7 +115,7 @@
     </section>
 
     <section class="slide" id="reducing">
-        <h2>Reducing trial duration</h2>
+        <h2>Single-arm trials with multi-stage designs</h2>
         <div class="columns two">
             <div>
                 <svg id="reducing" class="data1"></svg>
@@ -125,13 +126,13 @@
                 <hr>
                 <button type="button" onclick="simon_two_stage(reducing_trial_duration)">Simon Two-Stage</button>
                 <button type="button" onclick="kunz_et_al(reducing_trial_duration)">Kunz et al.</button>
-                <button type="button" onclick="kunz_et_al(reducing_trial_duration)">Zocholl et al.</button>
+                <button type="button" onclick="zocholl_et_al(reducing_trial_duration)">Zocholl et al.</button>
             </div>
         </div>
     </section>
 
     <section class="slide" id="cov_adj">
-        <h2>Improving precision of the estimate</h2>
+        <h2>Single-arm trials with multi-stage designs</h2>
         <div class="columns two">
             <div>
                 <svg id="cov_adj"></svg>
@@ -180,8 +181,10 @@
                         </msub>
                 </math>
                 <math display="block">
-                    <mtext mathvariant="bold">Decision at interim: </mtext>
-                    <mspace width="5px"></mspace>
+                    <mtext mathvariant="bold">Decision at interim - exact test: </mtext>
+                    <!-- <mspace width="5px"></mspace> -->
+                </math>
+                <math display="block">
                     <mrow>
                         <msub>
                             <mi>s</mi>
@@ -1050,11 +1053,15 @@
             <li>Discussion</li>
         </ol>
         <img class="place bottom left" style="width: 100px; margin: 0px 0px 10px 10px" src="pictures/ugent-en.png">
-
     </section>
 
     <section class="slide">
-        <h2 style = "margin-bottom: 5px;">Simulations - Under the null hypothesis</h2>
+        <h2>Simulation settings</h2>
+        <img style="margin-top: 60px;" width="800" src="assets/images/sim_summary.jpg">
+    </section>
+
+    <section class="slide">
+        <h2 style = "margin-bottom: 5px;">Setting 1 - Under the null hypothesis</h2>
         <div>
             <img width="700" id="setting1_Alpha">
             <script>
@@ -1159,7 +1166,7 @@
     </section>
 
     <section class="slide">
-        <h2 style = "margin-bottom: 5px;">Simulations - Under the alternative hypothesis</h2>
+        <h2 style = "margin-bottom: 5px;">Setting 1 - Under the alternative hypothesis</h2>
         <div>
             <img width="700" id="setting1_Power">
             <script>
@@ -1263,10 +1270,56 @@
     </section>
 
     <section class="slide">
-        <h2 style = "margin-bottom: 5px;">Simulations - Model mispecification</h2>
+        <h2 style = "margin-bottom: 5px;">Setting 2 - Model mispecification</h2>
         <div>
             <img width="700" src="assets/images/setting2.png">
         </div>
+    </section>
+
+    <section class="slide">
+        <h2 style = "margin-bottom: 20px;">Setting 2 - Model mispecification</h2>
+        <img style="margin-left: 120px;" width="350" src="assets/images/setting2_powerratio.jpg">
+    </section>
+
+    <section class="slide">
+        <h2>Table of content</h2>
+        <ol>
+            <li>Single-arm trials combined with multi-stage designs</li>
+            <li>Proposed method</li>
+            <li>Simulations</li>
+            <li><b>Discussion</b></li>
+        </ol>
+        <img class="place bottom left" style="width: 100px; margin: 0px 0px 10px 10px" src="pictures/ugent-en.png">
+
+    </section>
+
+    <section class="slide">
+        <h2>Discussion</h2>
+        <b>Advantages of the proposed method, depends on: </b>
+        <ol>
+            <ul>
+                <li class="next">Proportion of additional participants in the pipeline</li>
+                <li class="next">Predictivity of baseline covariates and short-term endpoint</li>
+                <li class="next">Model mispecification</li>
+            </ul>
+        </ol>
+    </section>
+
+    <section class="slide">
+        <h2>Discussion</h2>
+        <b>When to use: </b>
+        <ol>
+            <ul>
+                <li class="next">Random recruitment with monotonic missing data</li>
+                <li class="next">Not everybody recruited at interim; see Mukherjee et al. (2022)</li>
+            </ul>
+        </ol>
+    </section>
+
+    <section class="slide">
+        <h2>Thank you for your attention</h2>
+        <h2>Questions?</h2>
+        <img class="place bottom left" style="width: 100px; margin: 0px 0px 10px 10px" src="pictures/ugent-en.png">
     </section>
 
     <div class="progress"></div>
