@@ -48,6 +48,7 @@ function swap_data(plot) {
 
     move_transparent_shapes_and_lines(plot, "recruitment_time", "short_time", "long_time", duration);
     set_text(plot, width - marginRight);
+    clear_button(plot);
 }
 
 
@@ -68,7 +69,12 @@ function simon_two_stage(plot) {
         "long_time",
         duration
     );
-    all_interim(plot, generate_data_stopped_recruitment()[n_1 - 1].long_time + 0.5, duration);
+    let interim = generate_data_stopped_recruitment()[n_1 - 1].long_time + 0.5
+    all_interim(plot, interim, duration);
+
+    let long = plot.long_time.filter(data => data.long_time < interim);
+    clear_button(plot);
+    add_pulse(long);
 }
 
 function kunz_et_al(plot) {
@@ -88,7 +94,39 @@ function kunz_et_al(plot) {
         "long_time_kunz_et_al",
         duration
     );
-    all_interim(plot, generate_data_stopped_recruitment()[n_1 - 1].short_time + 0.5, duration);
+    let interim = generate_data_stopped_recruitment()[n_1 - 1].short_time + 0.5
+    all_interim(plot, interim, duration);
+
+    let short = plot.short_time.filter(data => data.short_time < interim);
+    clear_button(plot);
+    add_pulse(short);
+}
+
+function zocholl_et_al(plot) {
+    let duration = 1000;
+    reset_data_class(plot.svg);
+    move_shapes_and_lines(
+        plot,
+        "recruitment_time_kunz_et_al",
+        "short_time_kunz_et_al",
+        "long_time_kunz_et_al",
+        duration
+    );
+    move_transparent_shapes_and_lines(
+        plot,
+        "recruitment_time_kunz_et_al",
+        "short_time_kunz_et_al",
+        "long_time_kunz_et_al",
+        duration
+    );
+    let interim = generate_data_stopped_recruitment()[n_1 - 1].short_time + 0.5
+    all_interim(plot, interim, duration);
+
+    let short = plot.short_time.filter(data => data.short_time < interim);
+    let long = plot.long_time.filter(data => data.long_time < interim);
+    clear_button(plot);
+    add_pulse(short);
+    add_pulse(long);
 }
 
 function covariate_adj(plot) {
