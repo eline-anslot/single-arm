@@ -5,8 +5,12 @@ function getRandomInteger(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
+function rectHeight(index) {
+    return index/n * (height - marginBottom - marginTop - 5);
+}
+
 function yScale(index) {
-    return ((height - marginBottom - marginTop - 5) * (n - index) / n + marginTop).toString() + "px"
+    return (height - marginBottom - marginTop - 5) * (n - index) / n + marginTop;
 }
 
 function xScale(index, leftLimit, rightLimit) {

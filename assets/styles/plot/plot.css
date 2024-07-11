@@ -13,3 +13,7 @@ text {
 button {
     margin: 5px;
 }
+
+ol {
+    margin-left: 50px;
+}

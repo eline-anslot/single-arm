@@ -40,14 +40,16 @@ function swap_data(plot) {
         .attr('r', radius)
         .attr("cx", data_point => data_point[long_time])
         .style("color", long_color);
+    
+    let interim = generate_data_stopped_recruitment()[n_1 - 1].long_time + 0.5
     plot.interim_line
         .transition()
         .duration(duration)
-        .attr("x1", width - marginRight)
-        .attr("x2", width - marginRight);
+        .attr("x1", interim)//width - marginRight)
+        .attr("x2", interim);//width - marginRight);
 
     move_transparent_shapes_and_lines(plot, "recruitment_time", "short_time", "long_time", duration);
-    set_text(plot, width - marginRight);
+    set_text(plot, interim);//width - marginRight);
     clear_button(plot);
 }
 
