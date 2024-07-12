@@ -17,6 +17,11 @@ window.MathJax = {
                     "pulse");
                 single_arm_plot = init_plot("single_arm", undefined, marginLeft - 0.5, 0);
                 initialise_reactivity(single_arm_plot)
+
+                swapdata = init_plot("swap",
+                    generate_data_stopped_recruitment(),
+                    width - marginRight + 0.5); //width - marginRight + 0.5);
+
                 reducing_trial_duration = init_plot("reducing",
                     generate_data_stopped_recruitment(),
                     width - marginRight + 0.5);
@@ -33,6 +38,14 @@ window.MathJax = {
                 //     "pulse");
 
                 proposed_plot = init_plot("proposed");
+                interactivity_formula(proposed_plot,
+                    "y_gr1",
+                    proposed_plot.long_time,
+                    (data_point) => {
+                        interim = constant_interim;
+                        return data_point.long_time < interim && data_point.long_time < interim;
+                    },
+                    "pulse");
                 interactivity_formula(proposed_plot,
                     "x_gr1",
                     proposed_plot.recruitment_time,
@@ -73,7 +86,8 @@ window.MathJax = {
                         return data_point.short_time < interim;
                     },
                     "pulse_ypred");
-
+                interactivity_title(proposed_plot, "model1", 8);
+                interactivity_title(proposed_plot, "pred1", 13);
                 proposed_plot2 = init_plot("proposed2");
                 interactivity_formula(proposed_plot2,
                     "predY12",
@@ -107,6 +121,8 @@ window.MathJax = {
                         return data_point.recruitment_time < interim;
                     },
                     "pulse_ypred");
+                interactivity_title(proposed_plot2, "model2", 13);
+                interactivity_title(proposed_plot2, "pred2", 18);
 
                 // proposed_plot3 = init_plot("proposed3");
                 // interactivity_formula(proposed_plot3,
@@ -461,6 +477,36 @@ function interactivity_formula(plot, id, item, callable, class2add) {
                 classes = item.attr("class").replace(class2add, "");
                 item.attr("class", classes);
                 all_interim(plot, constant_interim, 0);
+                timestamp = new Date().getTime();
+            }
+        });
+    }
+}
+
+function interactivity_title(plot, id, n) {
+    let y_one = document.getElementById(id);
+    let rect = plot.svg.append('rect');
+    if (y_one !== null) {
+        y_one.addEventListener("mouseenter", (event) => {
+            if (last_event + 2000 < new Date().getTime()) {
+                let rect_height = rectHeight(n) + 2;
+                rect
+                    .attr('rx', "10px")
+                    .attr('ry', "10px")
+                    .attr('x', marginLeft - 5)
+                    .attr('y', height - rect_height - marginBottom)
+                    .attr('width', constant_interim - marginLeft + 5)
+                    .attr('height', rect_height)
+                    .attr('stroke', 'black')
+                    .attr('stroke-width', '3px')
+                    .attr('stroke-dasharray', '5')
+                    .attr('fill', 'transparent');
+                timestamp = new Date().getTime();
+            }
+        });
+        y_one.addEventListener("mouseleave", (event) => {
+            if (last_event + 2000 < new Date().getTime()) {
+                rect.attr("stroke-width", "0");
                 timestamp = new Date().getTime();
             }
         });
