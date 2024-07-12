@@ -416,7 +416,7 @@
             <div style="margin-left: -7px;">
                 <div id="model1">
                     <math display="block">
-                        <mtext mathvariant="bold">Model fitting: </mtext>
+                        <mtext mathvariant="bold">Step 1: Model fitting: </mtext>
                     </math>
                     <math display="block">
                         <mspace width="5px"></mspace>
@@ -456,7 +456,7 @@
                 </div>
                 <div id="pred1">
                         <math display="block">
-                        <mtext mathvariant="bold">Predicting:</mtext>
+                        <mtext mathvariant="bold">Step 2: Predicting:</mtext>
                         <mspace width="5px"></mspace>
                     </math>
                     <math display="block">
@@ -522,7 +522,7 @@
             <div style="margin-left:44px;">
                 <div id="model2">
                     <math display="block">
-                        <mtext mathvariant="bold">Model fitting:</mtext>
+                        <mtext mathvariant="bold">Step3, Model fitting:</mtext>
                         <mspace width="5px"></mspace>
                     </math>
                     <math display="block">
@@ -557,7 +557,7 @@
                 </div>
                 <div id="pred2">
                     <math display="block">
-                        <mtext mathvariant="bold">Predicting:</mtext>
+                        <mtext mathvariant="bold">Step 4, Predicting:</mtext>
                         <mspace width="5px"></mspace>
                     </math> <math display="block">
                         <mrow>
@@ -1021,11 +1021,12 @@
 
     <section class="slide">
         <h2>Proposed method</h2>
-        <b>Decision at interim:</b> Z-test based on the \(PET(\mu_0)\) 
+        <b>Decision at interim:</b> Z-test with critical value based on the \(PET(\mu_0)\) 
         <br>
         <ol>
             <ul>
                 <li class="next">No additional assumptions</li>
+                <li class="next">Adjusting for different short-term endpoints and baseline covariates</li>
                 <li class="next">Asymptotically unbiased even with misspecified models</li>
                 <li class="next">Asymptotically efficient when models are correct</li>
             </ul>
@@ -1294,16 +1295,16 @@
             </div> -->
     </section>
 
-    <section class="slide">
+    <!-- <section class="slide">
         <h2 style = "margin-bottom: 5px;">Setting 2 - Model mispecification</h2>
         <div>
             <img width="700" src="assets/images/setting2.png">
         </div>
-    </section>
+    </section> -->
 
     <section class="slide">
         <h2 style = "margin-bottom: 20px;">Setting 2 - Model mispecification</h2>
-        <img style="margin-left: 120px;" width="350" src="assets/images/setting2_powerratio.jpg">
+        <img style="margin-left: 20px;" width="750" src="assets/images/setting2_results.jpg">
     </section>
 
     <section class="slide">
@@ -1324,13 +1325,49 @@
         <ol>
             <ul>
                 <li class="next">Proportion of additional participants in the pipeline</li>
-                <li class="next">Predictivity of baseline covariates and short-term endpoint</li>
-                <li class="next">Model mispecification</li>
+                <ol>
+                    <ul>
+                        <li class="next">But not everybody should be recruited at interim</li>
+                        <li class="next">Mukherjee et al. (2022) recommend that the duration to obtain the primary 
+                            endpoint does not exceed 10% of the total estimated recruitment time</li>
+                    </ul>
+                </ol>
             </ul>
         </ol>
     </section>
 
     <section class="slide">
+        <h2>Discussion</h2>
+        <b>Advantages of the proposed method, depends on: </b>
+        <ol>
+            <ul>
+                <li class="next">Predictivity of baseline covariates and short-term endpoint</li>
+                <li class="next">Model mispecification</li>
+            </ul>
+        </ol>
+        <p class="next">Data adaptive methods to help build the models</p>
+    </section>
+
+    <section class="slide">
+        <h2>Discussion</h2>
+        <ol>
+            <ul>
+                <li class="next">Increase in power but sample size calculation at the design stage should be based on an 
+                    assumption of no power gain to avoid making additional assumptions.</li>
+                <li class="next">Type I error rate inflated in small sample sizes</li>
+                <ol>
+                    <ul>
+                        <li class="next">Estimator's variance leans on asymptotic theory</li>
+                        <li class="next">Decision at interim relies on an approximation of the standard 
+                            normal distribution </li>
+                    </ul>
+                </ol>
+            </ul>
+        </ol>
+        
+    </section>
+
+    <!-- <section class="slide">
         <h2>Discussion</h2>
         <b>When to use: </b>
         <ol>
@@ -1339,7 +1376,7 @@
                 <li class="next">Not everybody recruited at interim; see Mukherjee et al. (2022)</li>
             </ul>
         </ol>
-    </section>
+    </section> -->
 
     <section class="slide">
         <h2>Thank you for your attention</h2>
