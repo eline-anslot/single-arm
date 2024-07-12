@@ -2,6 +2,7 @@ let simon_plot;
 let single_arm_plot;
 
 window.MathJax = {
+    "HTML-CSS" : { availableFonts : ["STIX"], preferredFont : "STIX", webFont : "STIX-Web", imageFont : null },
     startup: {
         ready: () => {
             MathJax.startup.defaultReady();

@@ -135,7 +135,7 @@
                 <button type="button" onclick="show_all(simon_plot)">all</button> -->
                 <svg id="simon"></svg>
             </div>
-            <div>
+            <div style="text-align: center">
                 <math display="block">
                     <mrow>
                         <msub>
@@ -162,10 +162,8 @@
                             <mi>i</mi>
                         </msub>
                 </math>
-                <math display="block">
-                    <mtext mathvariant="bold">Decision at interim - exact test: </mtext>
+                <p><b>Decision at interim - exact test: </b></p>
                     <!-- <mspace width="5px"></mspace> -->
-                </math>
                 <math display="block">
                     <mrow>
                         <msub>
@@ -179,9 +177,8 @@
                         </msub>
                     </mrow>
                 </math>
-                <math display="block">
-                    <mtext>with</mtext>
-                    <mspace width="5px"></mspace>
+                <p style="text-align: left; margin-left: 25px;">with</p>
+                <math display="block" style="position: absolute; transform: translate(-95px, -47px)">
                     <mrow>
                         <mi>P</mi>
                         <mi>E</mi>
@@ -414,10 +411,8 @@
                 <svg id="proposed"></svg>
             </div>
             <div style="margin-left: -7px;">
-                <div id="model1">
-                    <math display="block">
-                        <mtext mathvariant="bold">Step 1: Model fitting: </mtext>
-                    </math>
+                <div id="model1" style="text-align: center">
+                    <p><b>Step 1: Model fitting: </b></p>
                     <math display="block">
                         <mspace width="5px"></mspace>
                         <mrow>
@@ -454,11 +449,8 @@
                         </mrow>
                     </math>
                 </div>
-                <div id="pred1">
-                        <math display="block">
-                        <mtext mathvariant="bold">Step 2: Predicting:</mtext>
-                        <mspace width="5px"></mspace>
-                    </math>
+                <div id="pred1" style="text-align: center">
+                    <p><b>Step 2: Predicting:</b></p>
                     <math display="block">
                         <mrow>
                             <mover class="pred_y1" id="predY1">
@@ -520,11 +512,8 @@
                 <svg id="proposed2"></svg>
             </div>
             <div style="margin-left:44px;">
-                <div id="model2">
-                    <math display="block">
-                        <mtext mathvariant="bold">Step3, Model fitting:</mtext>
-                        <mspace width="5px"></mspace>
-                    </math>
+                <div id="model2" style="text-align: center">
+                    <p><b>Step 3: Model fitting:</b></p>
                     <math display="block">
                         <mrow>
                             <mi>h</mi>
@@ -555,11 +544,9 @@
                         </mrow>
                     </math>
                 </div>
-                <div id="pred2">
+                <div id="pred2"  style="text-align: center">
+                    <p><b>Step 4: Predicting:</b></p>
                     <math display="block">
-                        <mtext mathvariant="bold">Step 4, Predicting:</mtext>
-                        <mspace width="5px"></mspace>
-                    </math> <math display="block">
                         <mrow>
                             <mover class="pred_y1" id="predY123">
                                 <mi>Y</mi>
@@ -1328,7 +1315,7 @@
                 <ol>
                     <ul>
                         <li class="next">But not everybody should be recruited at interim</li>
-                        <li class="next">Mukherjee et al. (2022) recommend that the duration to obtain the primary 
+                        <li class="next" style="line-height: normal;">Mukherjee et al. (2022) recommend that the duration to obtain the primary 
                             endpoint does not exceed 10% of the total estimated recruitment time</li>
                     </ul>
                 </ol>
@@ -1345,20 +1332,20 @@
                 <li class="next">Model mispecification</li>
             </ul>
         </ol>
-        <p class="next">Data adaptive methods to help build the models</p>
+        <p class="next" style="font-size: 25px;">Data adaptive methods to help build the models</p>
     </section>
 
     <section class="slide">
         <h2>Discussion</h2>
         <ol>
             <ul>
-                <li class="next">Increase in power but sample size calculation at the design stage should be based on an 
+                <li class="next" style="line-height: normal;">Increase in power but sample size calculation at the design stage should be based on an 
                     assumption of no power gain to avoid making additional assumptions.</li>
                 <li class="next">Type I error rate inflated in small sample sizes</li>
                 <ol>
                     <ul>
                         <li class="next">Estimator's variance leans on asymptotic theory</li>
-                        <li class="next">Decision at interim relies on an approximation of the standard 
+                        <li class="next" style="line-height: normal;">Decision at interim relies on an approximation of the standard 
                             normal distribution </li>
                     </ul>
                 </ol>
