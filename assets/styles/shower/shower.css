@@ -9,7 +9,7 @@
 .shower {
     --slide-gap: 100px;
     --slide-ratio: calc(16 / 9);
-    --slide-width: 1024px;
+    --slide-width: 1124px;
     --slide-height: calc(
         var(--slide-width) / var(--slide-ratio)
     );
