@@ -2,7 +2,6 @@ let simon_plot;
 let single_arm_plot;
 
 window.MathJax = {
-    "HTML-CSS" : { availableFonts : ["STIX"], preferredFont : "STIX", webFont : "STIX-Web", imageFont : null },
     startup: {
         ready: () => {
             MathJax.startup.defaultReady();
@@ -16,12 +15,13 @@ window.MathJax = {
                         return data_point.long_time < interim;
                     },
                     "pulse");
-                single_arm_plot = init_plot("single_arm", undefined, marginLeft - 0.5, 0);
-                initialise_reactivity(single_arm_plot)
+                single_arm_plot = init_plot("single_arm", undefined, constant_interim);
+                //initialise_reactivity(single_arm_plot)
 
                 swapdata = init_plot("swap",
                     generate_data_stopped_recruitment(),
-                    width - marginRight + 0.5); //width - marginRight + 0.5);
+                    width - marginRight + 0.5);
+                swap_data(swapdata)
 
                 reducing_trial_duration = init_plot("reducing",
                     generate_data_stopped_recruitment(),

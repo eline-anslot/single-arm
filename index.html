@@ -75,7 +75,7 @@
             <div>
                 <svg id="single_arm"></svg>
             </div>
-            <div>
+            <!-- <div>
                 <math display="block">
                     <mrow>
                         <msub>
@@ -105,12 +105,12 @@
                             <mn>0</mn>
                         </msub>
                     </mrow>
-                </math>
+                </math> -->
                 <!-- <div class="button-group">
                     <button type="button" onclick="all_interim(single_arm_plot, undefined)">At interim</button>
                     <button type="button" onclick="show_all(single_arm_plot);">End of trial</button>
                 </div> -->
-            </div>
+            <!-- </div> -->
         </div>
     </section>
 
@@ -128,7 +128,7 @@
     </section>
 
     <section class="slide" id="simon">
-        <h2>Simon's two-stage at interim</h2>
+        <h2>Simon's two-stage design at interim</h2>
         <div class="columns two">
             <div>
                 <!-- <button type="button" onclick="all_interim(simon_plot, undefined)">interim</button>
@@ -240,6 +240,18 @@
                 <button type="button" onclick="swap_data(reducing_trial_duration)">Reset </button>
             </div>
         </div>
+    </section>
+
+    <section class="slide">
+        <h2>Aim of the proposed method</h2>
+        <ol>
+            <ul>
+                <li class="next">Broadly applicable</li>
+                <li class="next">Attempts to provide a precicer interim estimator</li>
+                <li class="next">When recruitment is continued: no additional assumptions</li>
+                <li class="next">Also applicable in setting of Kunz et al. &#8658; additional assumptions</li>
+            </ul>
+        </ol>
     </section>
 
 
@@ -1013,7 +1025,7 @@
         <ol>
             <ul>
                 <li class="next">No additional assumptions</li>
-                <li class="next">Adjusting for different short-term endpoints and baseline covariates</li>
+                <li class="next">Adjusting for multiple short-term endpoints and baseline covariates</li>
                 <li class="next">Asymptotically unbiased even with misspecified models</li>
                 <li class="next">Asymptotically efficient when models are correct</li>
             </ul>
@@ -1308,7 +1320,7 @@
 
     <section class="slide">
         <h2>Discussion</h2>
-        <b>Advantages of the proposed method, depends on: </b>
+        <b>Advantages of the proposed method, depend on: </b>
         <ol>
             <ul>
                 <li class="next">Proportion of additional participants in the pipeline</li>
@@ -1319,28 +1331,20 @@
                             endpoint does not exceed 10% of the total estimated recruitment time</li>
                     </ul>
                 </ol>
+                <ul>
+                    <li class="next">Predictivity of baseline covariates and short-term endpoint</li>
+                    <li class="next">Model mispecification</li>
+                </ul>
+                <p class="next" style="font-size: 25px;">Data adaptive methods to help build the models</p>
             </ul>
         </ol>
     </section>
 
     <section class="slide">
         <h2>Discussion</h2>
-        <b>Advantages of the proposed method, depends on: </b>
         <ol>
             <ul>
-                <li class="next">Predictivity of baseline covariates and short-term endpoint</li>
-                <li class="next">Model mispecification</li>
-            </ul>
-        </ol>
-        <p class="next" style="font-size: 25px;">Data adaptive methods to help build the models</p>
-    </section>
-
-    <section class="slide">
-        <h2>Discussion</h2>
-        <ol>
-            <ul>
-                <li class="next" style="line-height: normal;">Increase in power but sample size calculation at the design stage should be based on an 
-                    assumption of no power gain to avoid making additional assumptions.</li>
+                <li class="next" style="line-height: normal;">Calculate sample size as if no power gain occured</li>
                 <li class="next">Type I error rate inflated in small sample sizes</li>
                 <ol>
                     <ul>
