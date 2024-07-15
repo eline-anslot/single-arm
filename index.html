@@ -140,7 +140,9 @@
             <div>
                 <!-- <button type="button" onclick="all_interim(simon_plot, undefined)">interim</button>
                 <button type="button" onclick="show_all(simon_plot)">all</button> -->
-                <svg id="simon"></svg>
+                <svg id="simon" class="data1"></svg>
+                <button type="button" style="margin-bottom: auto;" 
+                onclick="swap_data(swapdata3)">Continued/Paused</button>
             </div>
             <div>
                 <p style="font-size: 20px; line-height: normal">Interim analysis:
@@ -651,61 +653,58 @@
                             <mi class="short" id="s_gr1">S</mi>
                         </mrow>
                     </math>
-                </div>
-                <div class="next" id="pred1" style="text-align: center">
-                    <p><b>Step 2: Predicting in cohort 1 and 2:</b></p>
-                    <math display="block">
-                        <mrow>
-                            <mover class="pred_y1" id="predY1">
-                                <mi>Y</mi>
-                                <mo stretchy="false" class="tml-capshift" style="math-style:normal;math-depth:0;">^</mo>
-                            </mover>
-                            <mo>=</mo>
-                            <msup>
-                                <mi>h</mi>
-                                <mrow>
-                                    <mo form="prefix" stretchy="false" lspace="0em" rspace="0em">−</mo>
-                                    <mn>1</mn>
-                                </mrow>
-                            </msup>
+                    <div class="next" id="pred1" style="text-align: center">
+                        <p><b>Step 2: Predicting in cohort 1 and 2:</b></p>
+                        <math display="block">
                             <mrow>
-                                <mo fence="true" form="prefix">[</mo>
-                                <mover>
-                                    <msub>
-                                        <mi>β</mi>
-                                        <mn>0</mn>
-                                    </msub>
-                                    <mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo>
+                                <mover class="pred_y1" id="predY1">
+                                    <mi>Y</mi>
+                                    <mo stretchy="false" class="tml-capshift" style="math-style:normal;math-depth:0;">^</mo>
                                 </mover>
-                                <mo>+</mo>
-                                <mover>
-                                    <msub>
-                                        <mi>𝛃</mi>
-                                        <mn>𝟏</mn>
-                                    </msub>
-                                    <mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo>
-                                </mover>
-                                <mi class="baseline" id=x_gr1_2>𝐗</mi>
-                                <mo>+</mo>
-                                <msub>
+                                <mo>=</mo>
+                                <msup>
+                                    <mi>h</mi>
+                                    <mrow>
+                                        <mo form="prefix" stretchy="false" lspace="0em" rspace="0em">−</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msup>
+                                <mrow>
+                                    <mo fence="true" form="prefix">[</mo>
                                     <mover>
-                                        <mi>β</mi>
-                                        <mo stretchy="false" class="tml-capshift" style="math-style:normal;math-depth:0;">^
-                                        </mo>
+                                        <msub>
+                                            <mi>β</mi>
+                                            <mn>0</mn>
+                                        </msub>
+                                        <mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo>
                                     </mover>
-                                    <mn>2</mn>
-                                </msub>
-                                <mi class="short" id="s_gr1_2">S</mi>
-                                <mo fence="true" form="postfix">]</mo>
+                                    <mo>+</mo>
+                                    <mover>
+                                        <msub>
+                                            <mi>𝛃</mi>
+                                            <mn>𝟏</mn>
+                                        </msub>
+                                        <mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo>
+                                    </mover>
+                                    <mi class="baseline" id=x_gr1_2>𝐗</mi>
+                                    <mo>+</mo>
+                                    <msub>
+                                        <mover>
+                                            <mi>β</mi>
+                                            <mo stretchy="false" class="tml-capshift" style="math-style:normal;math-depth:0;">^
+                                            </mo>
+                                        </mover>
+                                        <mn>2</mn>
+                                    </msub>
+                                    <mi class="short" id="s_gr1_2">S</mi>
+                                    <mo fence="true" form="postfix">]</mo>
+                                </mrow>
                             </mrow>
-                        </mrow>
-                    </math>
+                        </math>
+                    </div>
                 </div>
                 <div>
                     <p style="margin-bottom: auto;">h(.): canonical link function</p>
-                    <p style="margin-bottom: auto; color:#332288;">Y: primary endpoint</p>
-                    <p style="margin-bottom: auto; color:#117733;">X: baseline covariates</p> 
-                    <p style="margin-bottom: auto; color:#AA4499;">S: short-term endpoints</p>
                 </div>
             </div>
     </section>
@@ -751,7 +750,6 @@
                             </mrow>
                         </mrow>
                     </math>
-                </div>
                 <div class="next" id="pred2"  style="text-align: center">
                     <p><b>Step 4: Predicting in cohort 1, 2 and 3:</b></p>
                     <math display="block">
@@ -794,7 +792,6 @@
                             </mrow>
                         </mrow>
                     </math>
-                </div>
                 <div class="next" id="pred222">
                     <p><b>Step 5: Averaging</b></p>
                     <math display="block">
@@ -864,6 +861,8 @@
                     </mrow>
                     </math>
                 </div>
+            </div>
+            </div>
                 <!-- <div>
                     <p style="margin-bottom: auto;">h(.): canonical link function</p>
                     <p style="margin-bottom: auto; color:#117733;">X: baseline covariates</p> 
@@ -1234,6 +1233,7 @@
                         <mo form="postfix" stretchy="false">]</mo>
                     </mrow>
                 </math>
+                <p> with \(PET(p_0) = B(r_1; n_{long}, p_0)\)</p>
                 <p><b>In Group Sequential Design:</b></p>
                 <math display="block">
                     <mrow>
@@ -1615,7 +1615,7 @@
                             normal distribution </li>
                         <ol>
                             <ul>
-                                <li class="next" style="line-height: normal;">Alternatives: exact logistic regression,
+                                <li class="next" style="line-height: normal; margin-top: 15px;">Alternatives: exact logistic regression,
                                     firth correction, bayesian logistic regression</li>
                             </ul>
                         </ol>
