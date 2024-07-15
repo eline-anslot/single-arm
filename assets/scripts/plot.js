@@ -6,15 +6,35 @@ window.MathJax = {
         ready: () => {
             MathJax.startup.defaultReady();
             MathJax.startup.promise.then(() => {
-                simon_plot = init_plot("simon");
-                interactivity_formula(simon_plot,
+                //simon_plot = init_plot("simon");
+                swapdata3 = init_plot("simon", 
+                    generate_data_stopped_recruitment(),
+                    width - marginRight + 0.5)
+                interactivity_formula(swapdata3,
                     "outcome-simon",
-                    simon_plot.long_time,
+                    swapdata3.long_time,
                     (data_point) => {
                         interim = constant_interim;
                         return data_point.long_time < interim;
                     },
                     "pulse");
+                interactivity_formula(swapdata3,
+                    "outcome-gsd",
+                    swapdata3.long_time,
+                    (data_point) => {
+                        interim = constant_interim;
+                        return data_point.long_time < interim;
+                    },
+                    "pulse");
+                    interactivity_formula(swapdata3,
+                    "outcome-gsd2",
+                    swapdata3.long_time,
+                    (data_point) => {
+                        interim = constant_interim;
+                        return data_point.long_time < interim;
+                    },
+                    "pulse");
+                    swap_data(swapdata3)
                 single_arm_plot = init_plot("single_arm", undefined, constant_interim);
                 //initialise_reactivity(single_arm_plot)
 
@@ -23,9 +43,13 @@ window.MathJax = {
                     width - marginRight + 0.5);
                 swap_data(swapdata)
 
+                swapdata2 = init_plot("swap2", 
+                    generate_data_stopped_recruitment(),
+                    generate_data_stopped_recruitment()[7].long_time)
+
                 reducing_trial_duration = init_plot("reducing",
                     generate_data_stopped_recruitment(),
-                    width - marginRight + 0.5);
+                    generate_data_stopped_recruitment()[7].long_time);
 
                 covariate_adj_plot = init_plot("cov_adj");
                 // gsb_plot = init_plot("gsb");
@@ -39,6 +63,7 @@ window.MathJax = {
                 //     "pulse");
 
                 proposed_plot = init_plot("proposed");
+                add_legend(proposed_plot);
                 interactivity_formula(proposed_plot,
                     "y_gr1",
                     proposed_plot.long_time,
@@ -87,9 +112,10 @@ window.MathJax = {
                         return data_point.short_time < interim;
                     },
                     "pulse_ypred");
-                interactivity_title(proposed_plot, "model1", 8);
-                interactivity_title(proposed_plot, "pred1", 13);
+                interactivity_title(proposed_plot, "model1", 8, "cohort 1");
+                interactivity_title(proposed_plot, "pred1", 13, "cohort 2");
                 proposed_plot2 = init_plot("proposed2");
+                add_legend(proposed_plot2);
                 interactivity_formula(proposed_plot2,
                     "predY12",
                     proposed_plot2.long_time,
@@ -122,9 +148,17 @@ window.MathJax = {
                         return data_point.recruitment_time < interim;
                     },
                     "pulse_ypred");
-                interactivity_title(proposed_plot2, "model2", 13);
-                interactivity_title(proposed_plot2, "pred2", 18);
-
+                interactivity_formula(proposed_plot2,
+                    "pred222",
+                    proposed_plot2.long_time,
+                    (data_point) => {
+                        interim = constant_interim;
+                        return data_point.recruitment_time < interim;
+                    },
+                    "pulse_ypred");
+                interactivity_title(proposed_plot2, "model2", 8, "cohort 1");
+                interactivity_title(proposed_plot2, "model2", 13, "cohort 2");
+                interactivity_title(proposed_plot2, "pred2", 18, "cohort 3");
                 // proposed_plot3 = init_plot("proposed3");
                 // interactivity_formula(proposed_plot3,
                 //     "outcome-proposed3",
@@ -240,6 +274,19 @@ function draw_interim_line(svg, interim) {
     return interim_line
 }
 
+function add_legend(plot) {
+    let x = marginLeft + 15;
+    let x_text = x + 10;
+    let y = marginTop + 15;
+    let offset = 20;
+    plot.svg.append("circle").attr("cx", x).attr("cy", y).attr("r", radius).style("fill", baseline_color)
+    plot.svg.append("circle").attr("cx", x).attr("cy", y + offset).attr("r", radius).style("fill", short_color)
+    plot.svg.append("circle").attr("cx", x).attr("cy", y + 2*offset).attr("r", radius).style("fill", long_color)
+    plot.svg.append("text").attr("x", x_text).attr("y", y + 3).text("X: baseline covariates").style("font-size", "13px").attr("alignment-baseline","middle")
+    plot.svg.append("text").attr("x", x_text).attr("y", y + offset + 3).text("S: short-term endpoints").style("font-size", "13px").attr("alignment-baseline","middle")
+    plot.svg.append("text").attr("x", x_text).attr("y", y + 2*offset+ 3).text("Y: long-term endpoints").style("font-size", "13px").attr("alignment-baseline","middle")
+}
+
 function draw_connection_lines(svg, data, opacity) {
     let connection_lines = svg.append("g")
         .selectAll("line")
@@ -319,7 +366,7 @@ function set_text(plot, interim) {
     plot.text.html(
         "<p style='font-size: large;'><span style='color: " + baseline_color + ";'>n<sub>baseline</sub> = " + n_baseline + "</span>" +
         "&emsp;<span style='color: " + short_color + ";'> n<sub>short</sub> = " + n_short + "</span>" +
-        "&emsp;<span style='color: " + long_color + ";'>n<sub>1</sub> = " + n_long + "</span>" +
+        "&emsp;<span style='color: " + long_color + ";'>n<sub>long</sub> = " + n_long + "</span>" +
         "</p>")
 }
 // function change_interim_with_identifier(plot, identifier, radius, color) {
@@ -405,7 +452,7 @@ function add_axis(svg) {
         .attr("text-anchor", "middle")
         .attr("x", width / 2)
         .attr("y", height - 15)
-        .text("Calender time");
+        .text("Calendar time");
 
     // Add the y-axis.
     svg.append("g")
@@ -477,37 +524,53 @@ function interactivity_formula(plot, id, item, callable, class2add) {
             if (last_event + 2000 < new Date().getTime()) {
                 classes = item.attr("class").replace(class2add, "");
                 item.attr("class", classes);
-                all_interim(plot, constant_interim, 0);
+                if (!["outcome-simon", "outcome-gsd", "outcome-gsd2"].includes(id)){
+                    all_interim(plot, constant_interim, 0);
+                }
                 timestamp = new Date().getTime();
             }
         });
     }
 }
 
-function interactivity_title(plot, id, n) {
+function interactivity_title(plot, id, n, line_name) {
     let y_one = document.getElementById(id);
-    let rect = plot.svg.append('rect');
+    let line = plot.svg.append("line");
+    let text = plot.svg.append("text"); 
+    let rect_height = rectHeight(n);
+    line
+        .attr('x1', marginLeft)
+        .attr('x2', width - marginRight)
+        .attr('y1', height - rect_height - marginBottom)
+        .attr('y2', height - rect_height - marginBottom)
+        .attr('width', constant_interim - marginLeft + 5)
+        .attr('height', rect_height)
+        .attr('stroke', 'black')
+        .attr('stroke-width', '0px')
+        .attr('stroke-dasharray', '5')
+        .attr("class", "cohort");
+    text
+        .transition().duration(500)
+        .text()
+        .attr("x", width - marginBottom - 50)
+        .attr("y", height - rect_height - marginBottom + 15)
+        .style("font-size", "13px")
     if (y_one !== null) {
         y_one.addEventListener("mouseenter", (event) => {
             if (last_event + 2000 < new Date().getTime()) {
-                let rect_height = rectHeight(n) + 2;
-                rect
-                    .attr('rx', "10px")
-                    .attr('ry', "10px")
-                    .attr('x', marginLeft - 5)
-                    .attr('y', height - rect_height - marginBottom)
-                    .attr('width', constant_interim - marginLeft + 5)
-                    .attr('height', rect_height)
-                    .attr('stroke', 'black')
-                    .attr('stroke-width', '3px')
-                    .attr('stroke-dasharray', '5')
-                    .attr('fill', 'transparent');
+                line
+                    .transition().duration(500)
+                    .attr('stroke-width', '2px')
+                text
+                    .transition().duration(500)
+                    .text(line_name)
                 timestamp = new Date().getTime();
             }
         });
         y_one.addEventListener("mouseleave", (event) => {
             if (last_event + 2000 < new Date().getTime()) {
-                rect.attr("stroke-width", "0");
+                line.transition().duration(500).attr("stroke-width", "0");
+                text.transition().duration(500).text("");
                 timestamp = new Date().getTime();
             }
         });

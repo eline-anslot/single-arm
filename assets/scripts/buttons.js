@@ -79,6 +79,30 @@ function simon_two_stage(plot) {
     add_pulse(long);
 }
 
+function reset(plot){
+    let duration = 1000;
+    reset_data_class(plot.svg);
+    move_shapes_and_lines(
+        plot,
+        "recruitment_time",
+        "short_time",
+        "long_time",
+        duration
+    );
+    move_transparent_shapes_and_lines(
+        plot,
+        "recruitment_time",
+        "short_time",
+        "long_time",
+        duration
+    );
+    let interim = generate_data_stopped_recruitment()[n_1 - 1].long_time + 0.5
+    all_interim(plot, interim, duration);
+
+    let long = plot.long_time.filter(data => data.long_time < interim);
+    clear_button(plot);
+}
+
 function kunz_et_al(plot) {
     let duration = 1000;
     reset_data_class(plot.svg);
@@ -131,12 +155,16 @@ function zocholl_et_al(plot) {
     add_pulse(long);
 }
 
+
+
 function covariate_adj(plot) {
     let interim = plot.interim_line.attr("x1");
     let long = plot.long_time.filter(data => data.long_time < interim);
+    let short = plot.short_time.filter(data => data.short_time < interim);
     let bas = plot.recruitment_time.filter(data => data.recruitment_time < interim);
     clear_button(plot);
     add_pulse(long);
+    add_pulse(short);
     add_pulse(bas);
 }
 
