@@ -15,6 +15,22 @@ window.MathJax = {
                         return data_point.long_time < interim;
                     },
                     "pulse");
+                interactivity_formula(simon_plot,
+                    "outcome-gsd",
+                    simon_plot.long_time,
+                    (data_point) => {
+                        interim = constant_interim;
+                        return data_point.long_time < interim;
+                    },
+                    "pulse");
+                    interactivity_formula(simon_plot,
+                    "outcome-gsd2",
+                    simon_plot.long_time,
+                    (data_point) => {
+                        interim = constant_interim;
+                        return data_point.long_time < interim;
+                    },
+                    "pulse");
                 single_arm_plot = init_plot("single_arm", undefined, constant_interim);
                 //initialise_reactivity(single_arm_plot)
 
@@ -22,6 +38,10 @@ window.MathJax = {
                     generate_data_stopped_recruitment(),
                     width - marginRight + 0.5);
                 swap_data(swapdata)
+
+                swapdata2 = init_plot("swap2", 
+                    generate_data_stopped_recruitment(),
+                    width - marginRight + 0.5)
 
                 reducing_trial_duration = init_plot("reducing",
                     generate_data_stopped_recruitment(),
@@ -122,9 +142,16 @@ window.MathJax = {
                         return data_point.recruitment_time < interim;
                     },
                     "pulse_ypred");
+                interactivity_formula(proposed_plot2,
+                    "pred222",
+                    proposed_plot2.long_time,
+                    (data_point) => {
+                        interim = constant_interim;
+                        return data_point.recruitment_time < interim;
+                    },
+                    "pulse_ypred");
                 interactivity_title(proposed_plot2, "model2", 13);
                 interactivity_title(proposed_plot2, "pred2", 18);
-
                 // proposed_plot3 = init_plot("proposed3");
                 // interactivity_formula(proposed_plot3,
                 //     "outcome-proposed3",
@@ -319,7 +346,7 @@ function set_text(plot, interim) {
     plot.text.html(
         "<p style='font-size: large;'><span style='color: " + baseline_color + ";'>n<sub>baseline</sub> = " + n_baseline + "</span>" +
         "&emsp;<span style='color: " + short_color + ";'> n<sub>short</sub> = " + n_short + "</span>" +
-        "&emsp;<span style='color: " + long_color + ";'>n<sub>1</sub> = " + n_long + "</span>" +
+        "&emsp;<span style='color: " + long_color + ";'>n<sub>long</sub> = " + n_long + "</span>" +
         "</p>")
 }
 // function change_interim_with_identifier(plot, identifier, radius, color) {
@@ -405,7 +432,7 @@ function add_axis(svg) {
         .attr("text-anchor", "middle")
         .attr("x", width / 2)
         .attr("y", height - 15)
-        .text("Calender time");
+        .text("Calendar time");
 
     // Add the y-axis.
     svg.append("g")

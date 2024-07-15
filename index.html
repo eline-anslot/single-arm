@@ -69,13 +69,13 @@
 
     </section>
 
-    <section class="slide" id="single_arm">
+    <!-- <section class="slide" id="single_arm">
         <h2>Single-arm trials with multi-stage designs</h2>
         <div class="columns two">
             <div>
                 <svg id="single_arm"></svg>
             </div>
-            <!-- <div>
+            <div>
                 <math display="block">
                     <mrow>
                         <msub>
@@ -105,14 +105,14 @@
                             <mn>0</mn>
                         </msub>
                     </mrow>
-                </math> -->
-                <!-- <div class="button-group">
+                </math>
+                <div class="button-group">
                     <button type="button" onclick="all_interim(single_arm_plot, undefined)">At interim</button>
                     <button type="button" onclick="show_all(single_arm_plot);">End of trial</button>
-                </div> -->
-            <!-- </div> -->
+                </div>
+            </div>
         </div>
-    </section>
+    </section> -->
 
     <section class="slide" id="swap">
         <h2>Single-arm trials with multi-stage designs</h2>
@@ -121,22 +121,180 @@
                 <svg id="swap" class="data1"></svg>
             </div>
             <div class="button-group">
-                <button type="button" onclick="swap_data(swapdata)">Continued/Stopped</button>
+                <p style="margin-bottom: inherit;">Commonly used designs:</p>
+                <ol>
+                    <ul>
+                        <li style="font-size: 18px;">Group sequential designs</li>
+                        <li style="font-size: 18px;">Simon's two-stage designs</li>
+                    </ul>
+                </ol>
+                <button type="button" style="margin-bottom: auto;" onclick="swap_data(swapdata)">Continued/Paused</button>
                 <!-- <button type="button" onclick="show_all(reducing_trial_duration)">Reset </button>            -->
             </div>
         </div>
     </section>
 
     <section class="slide" id="simon">
-        <h2>Simon's two-stage design at interim</h2>
+        <h2>Interim analysis of two-stage designs</h2>
         <div class="columns two">
             <div>
                 <!-- <button type="button" onclick="all_interim(simon_plot, undefined)">interim</button>
                 <button type="button" onclick="show_all(simon_plot)">all</button> -->
                 <svg id="simon"></svg>
             </div>
-            <div style="text-align: center">
-                <math display="block">
+            <div>
+                <p style="font-size: 20px; line-height: normal">Interim analysis:
+                    based on the long-term endpoint &#8658 Unadjusted analysis </p>
+                <ol>
+                    <ul>
+                        <li class="next" style="font-size: 20px; line-height: normal; margin-left: -25px; margin-top: 15px;">
+                            Simon's two-stage design</li>
+                        <math class="next" display="block" class="tml-display" style="display:block math;">
+                            <mrow>
+                                <mrow>
+                                <munderover>
+                                    <mo movablelimits="false">∑</mo>
+                                    <mrow>
+                                    <mi>i</mi>
+                                    <mo>=</mo>
+                                    <mn>1</mn>
+                                    </mrow>
+                                    <msub>
+                                    <mi>n</mi>
+                                    <mrow>
+                                        <mi>l</mi>
+                                        <mi>o</mi>
+                                        <mi>n</mi>
+                                        <mi>g</mi>
+                                    </mrow>
+                                    </msub>
+                                </munderover>
+                                </mrow>
+                                <msub class="outcome" id="outcome-simon">
+                                <mi>y</mi>
+                                <mi>i</mi>
+                                </msub>
+                                <mo>≤</mo>
+                                <msub>
+                                <mi>r</mi>
+                                <mn>1</mn>
+                                </msub>
+                            </mrow>
+                            </math>
+                        <li class="next" style="font-size: 20px; line-height: normal; margin-left: -25px; margin-top: 15px;">
+                            Group sequential designs:</li>
+                            <math class="next" display="block">
+                            <mrow>
+                                <mi>Z</mi>
+                                <mo>=</mo>
+                                <mfrac>
+                                <mrow>
+                                    <mfrac>
+                                    <mn>1</mn>
+                                    <msub>
+                                        <mi>n</mi>
+                                        <mrow>
+                                        <mi>l</mi>
+                                        <mi>o</mi>
+                                        <mi>n</mi>
+                                        <mi>g</mi>
+                                        </mrow>
+                                    </msub>
+                                    </mfrac>
+                                    <msubsup>
+                                    <mo movablelimits="false">∑</mo>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mo>=</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <msub>
+                                        <mi>n</mi>
+                                        <mrow>
+                                        <mi>l</mi>
+                                        <mi>o</mi>
+                                        <mi>n</mi>
+                                        <mi>g</mi>
+                                        </mrow>
+                                    </msub>
+                                    </msubsup>
+                                    <msub class="outcome" id="outcome-gsd">
+                                    <mi>y</mi>
+                                    <mi>i</mi>
+                                    </msub>
+                                    <mo>−</mo>
+                                    <msub>
+                                    <mi>p</mi>
+                                    <mn>0</mn>
+                                    </msub>
+                                </mrow>
+                                <mrow>
+                                    <mi>S</mi>
+                                    <mi>E</mi>
+                                    <mo form="prefix" stretchy="false">(</mo>
+                                    <mfrac>
+                                    <mn>1</mn>
+                                    <msub>
+                                        <mi>n</mi>
+                                        <mrow>
+                                        <mi>l</mi>
+                                        <mi>o</mi>
+                                        <mi>n</mi>
+                                        <mi>g</mi>
+                                        </mrow>
+                                    </msub>
+                                    </mfrac>
+                                    <msubsup>
+                                    <mo movablelimits="false">∑</mo>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mo>=</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <msub>
+                                        <mi>n</mi>
+                                        <mrow>
+                                        <mi>l</mi>
+                                        <mi>o</mi>
+                                        <mi>n</mi>
+                                        <mi>g</mi>
+                                        </mrow>
+                                    </msub>
+                                    </msubsup>
+                                    <msub class="outcome" id="outcome-gsd2">
+                                    <mi>y</mi>
+                                    <mi>i</mi>
+                                    </msub>
+                                    <mo form="postfix" stretchy="false" lspace="0em" rspace="0em">)</mo>
+                                </mrow>
+                                </mfrac>
+                                <mo>≤</mo>
+                                <msup>
+                                <mi>ϕ</mi>
+                                <mrow>
+                                    <mo form="prefix" stretchy="false" lspace="0em" rspace="0em">−</mo>
+                                    <mn>1</mn>
+                                </mrow>
+                                </msup>
+                                <mo form="prefix" stretchy="false">(</mo>
+                                <msub>
+                                <mi>α</mi>
+                                <mrow>
+                                    <mi>i</mi>
+                                    <mi>n</mi>
+                                    <mi>t</mi>
+                                    <mi>e</mi>
+                                    <mi>r</mi>
+                                    <mi>i</mi>
+                                    <mi>m</mi>
+                                </mrow>
+                                </msub>
+                                <mo form="postfix" stretchy="false">)</mo>
+                            </mrow>
+                            </math>
+                    </ul>
+                </ol>
+                <!-- <math display="block">
                     <mrow>
                         <msub>
                             <mn>s</mn>
@@ -162,9 +320,9 @@
                             <mi>i</mi>
                         </msub>
                 </math>
-                <p><b>Decision at interim - exact test: </b></p>
+                <p><b>Decision at interim - exact test: </b></p> -->
                     <!-- <mspace width="5px"></mspace> -->
-                <math display="block">
+                <!-- <math display="block">
                     <mrow>
                         <msub>
                             <mi>s</mi>
@@ -185,7 +343,7 @@
                         <mi>T</mi>
                         <mo form="prefix" stretchy="false">(</mo>
                         <msub>
-                            <mi>μ</mi>
+                            <mi>p</mi>
                             <mn>0</mn>
                         </msub>
                         <mo form="postfix" stretchy="false">)</mo>
@@ -203,24 +361,24 @@
                         </msub>
                         <mi>|</mi>
                         <msub>
-                            <mi>μ</mi>
+                            <mi>p</mi>
                             <mn>0</mn>
                         </msub>
                         <mo form="postfix" stretchy="false">)</mo>
                     </mrow>
-                </math>
+                </math> -->
             </div>
         </div>
     </section>
 
     <section class="slide" id="cov_adj">
-        <h2>Single-arm trials with multi-stage designs</h2>
+        <h2>Can we use more information?</h2>
         <div class="columns two">
             <div>
                 <svg id="cov_adj"></svg>
             </div>
             <div class="button-group">
-                <button type="button" onclick="unadj(covariate_adj_plot)">Simon Two-Stage </button>
+                <button type="button" onclick="unadj(covariate_adj_plot)">Unadjusted analysis</button>
                 <button type="button" onclick="clear_button(covariate_adj_plot)">Reset </button>
                 <button type="button" onclick="covariate_adj(covariate_adj_plot)">Covariate adjustment</button>
             </div>
@@ -228,31 +386,64 @@
     </section>
 
     <section class="slide" id="reducing">
-        <h2>Single-arm trials with multi-stage designs</h2>
+        <h2>Improve decision by short-term endpoint</h2>
         <div class="columns two">
             <div>
                 <svg id="reducing" class="data1"></svg>
             </div>
             <div class="button-group">
-                <button type="button" onclick="simon_two_stage(reducing_trial_duration)">Simon Two-Stage</button>
-                <button type="button" onclick="kunz_et_al(reducing_trial_duration)">Kunz et al.</button>
-                <button type="button" onclick="zocholl_et_al(reducing_trial_duration)">Zocholl et al.</button>
-                <button type="button" onclick="swap_data(reducing_trial_duration)">Reset </button>
+                <button type="button" onclick="simon_two_stage(reducing_trial_duration)">Unadjusted analysis</button>
+                <button type="button" onclick="kunz_et_al(reducing_trial_duration)">Kunz et al. (2017)</button>
+                <button type="button" onclick="zocholl_et_al(reducing_trial_duration)">Zocholl et al. (2023)</button>
+                <button type="button" onclick="reset(reducing_trial_duration)">Reset </button>
+                <!-- <ol>
+                    <ul>
+                        <li class="next" style="font-size: 20px; line-height: normal; margin-left: -25px; margin-top: 15px;">
+                            Disadvange: cut-off values based on assumptions on the 
+                            association between the short-term and long-term endpoints.</li>
+                    </ul>
+                </ol> -->
             </div>
         </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="swap2">
+        <h2>More precise interim estimator</h2>
+        <div class="columns two">
+            <div>
+                <svg id="swap2" class="data1"></svg>
+            </div>
+            <div class="button-group">
+                <ol>
+                    <ul>
+                        <li class="next" style="font-size: 18px; line-height: normal; margin-left: -25px; margin-top: 20px;">
+                            <b>Recruitment paused:</b> 
+                            <p>With assumption on short-term endpoint success rate, as in 
+                                Kunz et al. (2017) and Zocholl et al. (2023)</p></li>
+                        <li class="next" style="font-size: 18px; line-height: normal; margin-left: -25px; margin-top: 15px;">
+                            <b>Recruitment continued</b>: 
+                            <p>No assumptions</p></li>
+                            <p class="next"> &#8658 Focus of the talk</p>
+                    </ul>
+                </ol>
+                <button type="button" style="margin-bottom: auto;" onclick="swap_data(swapdata2)">Continued/Paused</button>
+                <!-- <button type="button" onclick="show_all(reducing_trial_duration)">Reset </button>            -->
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="slide">
         <h2>Aim of the proposed method</h2>
         <ol>
             <ul>
                 <li class="next">Broadly applicable</li>
-                <li class="next">Attempts to provide a precicer interim estimator</li>
+                <li class="next">Attempts to provide a more precise interim estimator</li>
                 <li class="next">When recruitment is continued: no additional assumptions</li>
-                <li class="next">Also applicable in setting of Kunz et al. &#8658; additional assumptions</li>
+                <li class="next" style="line-height: normal;">Also applicable in setting where recruitment is stopped as 
+                    in Kunz et al. (2017) and Zocholl et al. (2023) which comes with additional assumptions</li>
             </ul>
         </ol>
-    </section>
+    </section> -->
 
 
 
@@ -423,7 +614,7 @@
                 <svg id="proposed"></svg>
             </div>
             <div style="margin-left: -7px;">
-                <div id="model1" style="text-align: center">
+                <div class="next" id="model1" style="text-align: center">
                     <p><b>Step 1: Model fitting in cohort 1: </b></p>
                     <math display="block">
                         <mspace width="5px"></mspace>
@@ -461,7 +652,7 @@
                         </mrow>
                     </math>
                 </div>
-                <div id="pred1" style="text-align: center">
+                <div class="next" id="pred1" style="text-align: center">
                     <p><b>Step 2: Predicting in cohort 1 and 2:</b></p>
                     <math display="block">
                         <mrow>
@@ -510,7 +701,12 @@
                         </mrow>
                     </math>
                 </div>
-
+                <div>
+                    <p style="margin-bottom: auto;">h(.): canonical link function</p>
+                    <p style="margin-bottom: auto; color:#332288;">Y: primary endpoint</p>
+                    <p style="margin-bottom: auto; color:#117733;">X: baseline covariates</p> 
+                    <p style="margin-bottom: auto; color:#AA4499;">S: short-term endpoints</p>
+                </div>
             </div>
     </section>
 
@@ -524,7 +720,7 @@
                 <svg id="proposed2"></svg>
             </div>
             <div style="margin-left: -10px;">
-                <div id="model2" style="text-align: center">
+                <div class="next" id="model2" style="text-align: center">
                     <p><b>Step 3: Model fitting in cohort 1 and 2:</b></p>
                     <math display="block">
                         <mrow>
@@ -556,7 +752,7 @@
                         </mrow>
                     </math>
                 </div>
-                <div id="pred2"  style="text-align: center">
+                <div class="next" id="pred2"  style="text-align: center">
                     <p><b>Step 4: Predicting in cohort 1, 2 and 3:</b></p>
                     <math display="block">
                         <mrow>
@@ -599,6 +795,79 @@
                         </mrow>
                     </math>
                 </div>
+                <div class="next" id="pred222">
+                    <p><b>Step 5: Averaging</b></p>
+                    <math display="block">
+                    <mrow>
+                        <msub>
+                        <mover>
+                            <mi>p</mi>
+                            <mo stretchy="false" class="tml-xshift" style="math-style:normal;math-depth:0;">^</mo>
+                        </mover>
+                        <mrow>
+                            <mi>i</mi>
+                            <mi>n</mi>
+                            <mi>t</mi>
+                        </mrow>
+                        </msub>
+                        <mo>=</mo>
+                        <mfrac>
+                        <mn>1</mn>
+                        <msub>
+                            <mi>n</mi>
+                            <mrow>
+                            <mi>b</mi>
+                            <mi>a</mi>
+                            <mi>s</mi>
+                            <mi>e</mi>
+                            <mi>l</mi>
+                            <mi>i</mi>
+                            <mi>n</mi>
+                            <mi>e</mi>
+                            </mrow>
+                        </msub>
+                        </mfrac>
+                        <mrow>
+                        <munderover>
+                            <mo movablelimits="false">∑</mo>
+                            <mrow>
+                            <mi>i</mi>
+                            <mo>=</mo>
+                            <mn>1</mn>
+                            </mrow>
+                            <msub>
+                            <mi>n</mi>
+                            <mrow>
+                                <mi>b</mi>
+                                <mi>a</mi>
+                                <mi>s</mi>
+                                <mi>e</mi>
+                                <mi>l</mi>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>e</mi>
+                            </mrow>
+                            </msub>
+                        </munderover>
+                        </mrow>
+                        <msubsup class="pred_y1" id="pred222">
+                        <mover>
+                            <mi>Y</mi>
+                            <mo stretchy="false" class="tml-capshift" style="math-style:normal;math-depth:0;">^</mo>
+                        </mover>
+                        <mi>i</mi>
+                        <msup>
+                            <mrow></mrow>
+                            <mo lspace="0em" rspace="0em" class="tml-prime">′</mo>
+                        </msup>
+                        </msubsup>
+                    </mrow>
+                    </math>
+                </div>
+                <!-- <div>
+                    <p style="margin-bottom: auto;">h(.): canonical link function</p>
+                    <p style="margin-bottom: auto; color:#117733;">X: baseline covariates</p> 
+                </div> -->
             </div>
     </section>
 
@@ -840,14 +1109,11 @@
             </div>
     </section> -->
 
-    <!-- <section class="slide" id="proposed3">
+    <section class="slide" id="proposed3">
         <h2>Proposed method - Decision at interim</h2>
         <div class="columns two">
-            <div>
-                <math display="block">
-                    <mtext mathvariant="bold">Decision at interim:</mtext>
-                    <mspace width="5px"></mspace>
-                </math>
+            <div style="text-align: center">
+                <p><b>Decision at interim:</b></p>
                 <math display="block">
                     <mrow>
                         <msub>
@@ -863,7 +1129,7 @@
                             <mrow>
                                 <msub>
                                     <mover>
-                                        <mi>μ</mi>
+                                        <mi>p</mi>
                                         <mo stretchy="false" class="tml-xshift" style="math-style:normal;math-depth:0;">
                                             ^</mo>
                                     </mover>
@@ -875,7 +1141,7 @@
                                 </msub>
                                 <mo>−</mo>
                                 <msub>
-                                    <mi>μ</mi>
+                                    <mi>p</mi>
                                     <mn>0</mn>
                                 </msub>
                             </mrow>
@@ -885,7 +1151,7 @@
                                 <mo fence="false" symmetric="true" minsize="1.2em" maxsize="1.2em">(</mo>
                                 <msub>
                                     <mover>
-                                        <mi>μ</mi>
+                                        <mi>p</mi>
                                         <mo stretchy="false" class="tml-xshift" style="math-style:normal;math-depth:0;">
                                             ^</mo>
                                     </mover>
@@ -900,7 +1166,7 @@
                         </mfrac>
                     </mrow>
                 </math>
-                <math display="block">
+                <!-- <math display="block">
                     <mrow>
                         <msub>
                             <mi>Z</mi>
@@ -919,24 +1185,24 @@
                             </mrow>
                         </msup>
                         <mo form="prefix" stretchy="false">[</mo>
-                        <msubsup>
+                        <msub>
                             <mi>α</mi>
                             <mrow>
                                 <mi>i</mi>
                                 <mi>n</mi>
                                 <mi>t</mi>
                             </mrow>
-                            <mo form="prefix" stretchy="false">*</mo>
-                        </msubsup>
+                        </msub>
                         <mo form="postfix" stretchy="false">]</mo>
                     </mrow>
                 </math>
+                <p style="text-align: left; line-height: normal;">\(\hat{\mu}_{int}:\) average of \(\hat{Y}'\)</p>
+                <p style="text-align: left; line-height: normal;">\(SE(\hat{\mu}_{int}):\) standard error of the interim estimator &#8658 influence function</p>
+                <p style="text-align: left; line-height: normal;">\(\mu_0\): highest average response that would not justify further investigation</p>
+                <p style="text-align: left; line-height: normal;">\(\phi^{-1}\): inverse of the cumulative standard normal distribution function</p> -->
             </div>
-            <div>
-                <math display="block">
-                    <mtext mathvariant="bold">In Simon's Two-Stage:</mtext>
-                    <mspace width="5px"></mspace>
-                </math>
+            <div style="text-align: center" class="next">
+                <p><b>In Simon's Two-Stage:</b></p>
                 <math display="block">
                     <mrow>
                         <msub>
@@ -961,17 +1227,14 @@
                         <mi>T</mi>
                         <mo form="prefix" stretchy="false">(</mo>
                         <msub>
-                            <mi>&mu;</mi>
+                            <mi>p</mi>
                             <mn>0</mn>
                         </msub>
                         <mo form="postfix" stretchy="false">)</mo>
                         <mo form="postfix" stretchy="false">]</mo>
                     </mrow>
                 </math>
-                <math display="block">
-                    <mtext mathvariant="bold">In Group Sequential Design:</mtext>
-                    <mspace width="5px"></mspace>
-                </math>
+                <p><b>In Group Sequential Design:</b></p>
                 <math display="block">
                     <mrow>
                         <msub>
@@ -993,38 +1256,26 @@
                         <mo form="prefix" stretchy="false">[</mo>
                         <msub>
                             <mi>α</mi>
-                            <mn>1</mn>
-                        </msub>
+                            <mrow>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>t</mi>
+                            </mrow>                        </msub>
                         <mo form="postfix" stretchy="false">]</mo>
                 </math>
-                <math display="block">
-                    <mtext>and</mtext>
-                    <mspace width="5px"></mspace>
-                    <mrow>
-                        <mi>α</mi>
-                        <mo>=</mo>
-                        <msub>
-                            <mi>α</mi>
-                            <mn>1</mn>
-                        </msub>
-                        <mo>+</mo>
-                        <msub>
-                            <mi>α</mi>
-                            <mn>2</mn>
-                        </msub>
-                    </mrow>
-                </math>
+                <p style="margin-left: 119px;">with \(\alpha_{int}\) based on e.g.,
+                    Pocock (1977), Lan and DeMets (1983)</p>
             </div>
         </div>
-    </section> -->
+    </section>
 
     <section class="slide">
         <h2>Proposed method</h2>
-        <b>Decision at interim:</b> Z-test with critical value based on the \(PET(\mu_0)\) 
+        <!-- <b>Decision at interim:</b> Z-test with critical value based on the \(PET(\mu_0)\)  -->
+        <b>Decision at interim:</b>
         <br>
         <ol>
             <ul>
-                <li class="next">No additional assumptions</li>
                 <li class="next">Adjusting for multiple short-term endpoints and baseline covariates</li>
                 <li class="next">Asymptotically unbiased even with misspecified models</li>
                 <li class="next">Asymptotically efficient when models are correct</li>
@@ -1090,7 +1341,12 @@
 
     <section class="slide">
         <h2>Simulation settings</h2>
-        <img style="margin-top: 60px;" width="800" src="assets/images/sim_summary.jpg">
+        <p>\(\alpha = 0.05\), \(power = 0.80\)</p>
+        <!-- <img width="800" src="assets/images/optimal_design.jpg"> -->
+        <img width="800" src="assets/images/sim_summary.jpg">
+        <p>Design: two different optimal two-stage designs to generate e.g., \(n_1\) and \(r_1\)</p>
+        <img class="next" width="370" src="assets/images/optimal_design.jpg">
+        <!-- <p class="next">\(n_{extra}:\) number of participants with partial information at interim</p> -->
     </section>
 
     <section class="slide">
@@ -1303,7 +1559,7 @@
 
     <section class="slide">
         <h2 style = "margin-bottom: 20px;">Setting 2 - Model mispecification</h2>
-        <img style="margin-left: 20px;" width="750" src="assets/images/setting2_results.jpg">
+        <img style="margin-left: 20px;" width="600" src="assets/images/setting2_results.jpg">
     </section>
 
     <section class="slide">
@@ -1326,16 +1582,22 @@
                 <li class="next">Proportion of additional participants in the pipeline</li>
                 <ol>
                     <ul>
-                        <li class="next">But not everybody should be recruited at interim</li>
-                        <li class="next" style="line-height: normal;">Mukherjee et al. (2022) recommend that the duration to obtain the primary 
-                            endpoint does not exceed 10% of the total estimated recruitment time</li>
+                        <li class="next">But ideally not everybody should be recruited at interim</li>
+                        <!-- <li class="next" style="line-height: normal;">Mukherjee et al. (2022) recommend that the duration to obtain the primary 
+                            endpoint does not exceed 10% of the total estimated recruitment time</li> -->
                     </ul>
                 </ol>
                 <ul>
                     <li class="next">Predictivity of baseline covariates and short-term endpoint</li>
                     <li class="next">Model mispecification</li>
                 </ul>
-                <p class="next" style="font-size: 25px;">Data adaptive methods to help build the models</p>
+                <ol>
+                    <ul>
+                        <li class="next" style="font-size: 25px; line-height: normal;">
+                            Extension: data adaptive methods to help build the models (see e.g., Van Lancker et al., 2024)
+                        </li>
+                    </ul>
+                </ol>
             </ul>
         </ol>
     </section>
@@ -1351,6 +1613,12 @@
                         <li class="next">Estimator's variance leans on asymptotic theory</li>
                         <li class="next" style="line-height: normal;">Decision at interim relies on an approximation of the standard 
                             normal distribution </li>
+                        <ol>
+                            <ul>
+                                <li class="next" style="line-height: normal;">Alternatives: exact logistic regression,
+                                    firth correction, bayesian logistic regression</li>
+                            </ul>
+                        </ol>
                     </ul>
                 </ol>
             </ul>
