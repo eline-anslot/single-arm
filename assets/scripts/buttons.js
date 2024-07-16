@@ -49,7 +49,7 @@ function swap_data(plot) {
         .attr("x2", interim);//width - marginRight);
 
     move_transparent_shapes_and_lines(plot, "recruitment_time", "short_time", "long_time", duration);
-    set_text(plot, interim);//width - marginRight);
+    set_text(plot, interim, recruitment_time, short_time, long_time);
     clear_button(plot);
 }
 

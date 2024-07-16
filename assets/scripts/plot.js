@@ -26,7 +26,7 @@ window.MathJax = {
                         return data_point.long_time < interim;
                     },
                     "pulse");
-                    interactivity_formula(swapdata3,
+                interactivity_formula(swapdata3,
                     "outcome-gsd2",
                     swapdata3.long_time,
                     (data_point) => {
@@ -34,7 +34,7 @@ window.MathJax = {
                         return data_point.long_time < interim;
                     },
                     "pulse");
-                    swap_data(swapdata3)
+                swap_data(swapdata3)
                 single_arm_plot = init_plot("single_arm", undefined, constant_interim);
                 //initialise_reactivity(single_arm_plot)
 
@@ -45,11 +45,11 @@ window.MathJax = {
 
                 swapdata2 = init_plot("swap2", 
                     generate_data_stopped_recruitment(),
-                    generate_data_stopped_recruitment()[7].long_time)
+                    generate_data_stopped_recruitment()[7].long_time + 0.5)
 
                 reducing_trial_duration = init_plot("reducing",
                     generate_data_stopped_recruitment(),
-                    generate_data_stopped_recruitment()[7].long_time);
+                    generate_data_stopped_recruitment()[7].long_time + 0.5);
 
                 covariate_adj_plot = init_plot("cov_adj");
                 // gsb_plot = init_plot("gsb");
@@ -353,15 +353,18 @@ function on_click(plot) {
     }
 }
 
-function set_text(plot, interim) {
+function set_text(plot, interim, recruitment_time, short_time, long_time) {
+    recruitment_time = recruitment_time === undefined ? "recruitment_time" : recruitment_time;
+    short_time = short_time === undefined ? "short_time" : short_time;
+    long_time = long_time === undefined ? "long_time" : long_time
     let n_long = plot.recruitment_time
-        .filter(data => data.long_time < interim)
+        .filter(data => data[long_time] < interim)
         .size();
     let n_short = plot.recruitment_time
-        .filter(data => data.short_time < interim)
+        .filter(data => data[short_time] < interim)
         .size();
     let n_baseline = plot.recruitment_time
-        .filter(data => data.recruitment_time < interim)
+        .filter(data => data[recruitment_time] < interim)
         .size();
     plot.text.html(
         "<p style='font-size: large;'><span style='color: " + baseline_color + ";'>n<sub>baseline</sub> = " + n_baseline + "</span>" +
