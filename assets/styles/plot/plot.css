@@ -17,3 +17,7 @@ button {
 ol {
     margin-left: 50px;
 }
+
+mjx-container:has(mjx-math.no-margin-formula) {
+    margin-bottom: 0 !important;
+}
