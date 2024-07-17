@@ -120,7 +120,7 @@
             <div>
                 <svg id="swap" class="data1"></svg>
             </div>
-            <div class="button-group">
+            <div>
                 <p style="margin-bottom: inherit;">Commonly used designs:</p>
                 <ol>
                     <ul>
@@ -128,10 +128,10 @@
                         <li style="font-size: 18px;">Simon's two-stage designs</li>
                     </ul>
                 </ol>
-                <button type="button" style="margin-bottom: auto;" onclick="swap_data(swapdata)">Continued/Paused</button>
                 <!-- <button type="button" onclick="show_all(reducing_trial_duration)">Reset </button>            -->
             </div>
         </div>
+        <button type="button" style="margin-bottom: auto;" onclick="swap_data(swapdata)">Continued/Paused</button>
     </section>
 
     <section class="slide" id="simon">
@@ -150,8 +150,8 @@
                 <ol>
                     <ul>
                         <li class="next" style="font-size: 20px; line-height: normal; margin-left: -25px; margin-top: 15px;">
-                            Simon's two-stage design: exact test:</li>
-                        <math class="next" display="block" class="tml-display" style="display:block math;">
+                            <b>Simon's two-stage design:</b>
+                        <math display="block">
                             <mrow>
                                 <mrow>
                                 <munderover>
@@ -183,9 +183,10 @@
                                 </msub>
                             </mrow>
                             </math>
+                        </li>
                         <li class="next" style="font-size: 20px; line-height: normal; margin-left: -25px; margin-top: 15px;">
-                            Group sequential designs:</li>
-                            <math class="next" display="block">
+                            <b>Group sequential designs:</b>
+                            <math display="block">
                             <mrow>
                                 <mi>Z</mi>
                                 <mo>=</mo>
@@ -270,30 +271,11 @@
                                     <mo form="postfix" stretchy="false" lspace="0em" rspace="0em">)</mo>
                                 </mrow>
                                 </mfrac>
-                                <mo>≤</mo>
-                                <msup>
-                                <mi>ϕ</mi>
-                                <mrow>
-                                    <mo form="prefix" stretchy="false" lspace="0em" rspace="0em">−</mo>
-                                    <mn>1</mn>
-                                </mrow>
-                                </msup>
-                                <mo form="prefix" stretchy="false">(</mo>
-                                <msub>
-                                <mi>α</mi>
-                                <mrow>
-                                    <mi>i</mi>
-                                    <mi>n</mi>
-                                    <mi>t</mi>
-                                    <mi>e</mi>
-                                    <mi>r</mi>
-                                    <mi>i</mi>
-                                    <mi>m</mi>
-                                </mrow>
-                                </msub>
-                                <mo form="postfix" stretchy="false">)</mo>
-                            </mrow>
                             </math>
+                            <p>with \(Z\) compared with cut-off to stop a trial for futility or efficacy based on 
+                            e.g., Pocock (1977), O’Brien and Fleming (1979) or 
+                            Lan and DeMets (1983) with \(\alpha-\) or \(\beta-\) error spending </p>
+                        </li>
                     </ul>
                 </ol>
                 <!-- <math display="block">
@@ -382,7 +364,7 @@
             <div class="button-group">
                 <button type="button" onclick="unadj(covariate_adj_plot)">Unadjusted analysis</button>
                 <button type="button" onclick="clear_button(covariate_adj_plot)">Reset </button>
-                <button type="button" onclick="covariate_adj(covariate_adj_plot)">Covariate adjustment</button>
+                <button type="button" onclick="covariate_adj(covariate_adj_plot)">Adjusted analysis</button>
             </div>
         </div>
     </section>
@@ -415,7 +397,29 @@
             <div>
                 <svg id="swap2" class="data1"></svg>
             </div>
-            <div class="button-group">
+            <div>
+                <ol>
+                    <ul>
+                        <li class="next" style="font-size: 18px; line-height: normal; margin-left: -25px; margin-top: 20px;">
+                            <b>Recruitment with a pause:</b> 
+                            <p>Possible as in Kunz et al. (2017) and Zocholl et al. (2023)</p></li>
+                        <li class="next" style="font-size: 18px; line-height: normal; margin-left: -25px; margin-top: 15px;">
+                            <b>Continuous recruitment</b>: 
+                            <p class="next"> &#8658 Focus of the talk</p>
+                    </ul>
+                </ol>
+            </div>
+        </div>
+        <button type="button" style="margin-bottom: auto;" onclick="swap_data(swapdata2)">Continued/Paused</button>
+    </section>
+
+    <!-- <section class="slide" id="swap2">
+        <h2>More precise interim estimator</h2>
+        <div class="columns two">
+            <div>
+                <svg id="swap2" class="data1"></svg>
+            </div>
+            <div>
                 <ol>
                     <ul>
                         <li class="next" style="font-size: 18px; line-height: normal; margin-left: -25px; margin-top: 20px;">
@@ -428,11 +432,10 @@
                             <p class="next"> &#8658 Focus of the talk</p>
                     </ul>
                 </ol>
-                <button type="button" style="margin-bottom: auto;" onclick="swap_data(swapdata2)">Continued/Paused</button>
-                <!-- <button type="button" onclick="show_all(reducing_trial_duration)">Reset </button>            -->
             </div>
         </div>
-    </section>
+        <button type="button" style="margin-bottom: auto;" onclick="swap_data(swapdata2)">Continued/Paused</button>
+    </section> -->
 
     <!-- <section class="slide">
         <h2>Aim of the proposed method</h2>
@@ -1197,6 +1200,11 @@
                 <p style="text-align: left; line-height: normal;">\(SE(\hat{\mu}_{int}):\) standard error of the interim estimator &#8658 influence function</p>
                 <p style="text-align: left; line-height: normal;">\(\mu_0\): highest average response that would not justify further investigation</p>
                 <p style="text-align: left; line-height: normal;">\(\phi^{-1}\): inverse of the cumulative standard normal distribution function</p> -->
+                <p class="next" style="text-align: left"><b>In Group Sequential Design:</b>
+                    <br>\(Z_{int}\) compared with cut-off to stop a trial for futility or efficacy based on 
+                    e.g., <br> Pocock (1977), O’Brien and Fleming (1979) or 
+                    <br>Lan and DeMets (1983) with \(\alpha-\) or \(\beta-\) error spending
+                </p>
             </div>
             <div style="text-align: center" class="next">
                 <p><b>In Simon's Two-Stage:</b></p>
@@ -1231,38 +1239,8 @@
                         <mo form="postfix" stretchy="false">]</mo>
                     </mrow>
                 </math>
-                <p> with \(PET(p_0) = B(r_1; n_{long}, p_0)\)</p>
-                <p><b>In Group Sequential Design:</b></p>
-                <math display="block">
-                    <mrow>
-                        <msub>
-                            <mi>Z</mi>
-                            <mrow>
-                                <mi>i</mi>
-                                <mi>n</mi>
-                                <mi>t</mi>
-                            </mrow>
-                        </msub>
-                        <mo>≤</mo>
-                        <msup>
-                            <mi>ϕ</mi>
-                            <mrow>
-                                <mo form="prefix" stretchy="false" lspace="0em" rspace="0em">−</mo>
-                                <mn>1</mn>
-                            </mrow>
-                        </msup>
-                        <mo form="prefix" stretchy="false">[</mo>
-                        <msub>
-                            <mi>α</mi>
-                            <mrow>
-                                <mi>i</mi>
-                                <mi>n</mi>
-                                <mi>t</mi>
-                            </mrow>                        </msub>
-                        <mo form="postfix" stretchy="false">]</mo>
-                </math>
-                <p style="margin-left: 119px;">with \(\alpha_{int}\) based on e.g.,
-                    Pocock (1977), Lan and DeMets (1983)</p>
+                <p style="margin-bottom: auto;"> with \(PET(p_0) = B(r_1; n_{long}, p_0)\)</p>
+                <img width="450" src="assets/images/pet.png">
             </div>
         </div>
     </section>
@@ -1275,7 +1253,13 @@
         <ol>
             <ul>
                 <li class="next">Adjusting for multiple short-term endpoints and baseline covariates</li>
-                <li class="next">Asymptotically unbiased even with misspecified models</li>
+                <li class="next">Asymptotically unbiased even with misspecified models
+                <ol>
+                    <ul>
+                        <li>Under random recruitment</li>
+                    </ul>
+                </ol>
+                </li>
                 <li class="next">Asymptotically efficient when models are correct</li>
             </ul>
         </ol>
@@ -1338,22 +1322,38 @@
     </section>
 
     <section class="slide">
-        <h2>Simulation settings</h2>
-        <p>\(\alpha = 0.05\), \(power = 0.80\)</p>
-        <!-- <img width="800" src="assets/images/optimal_design.jpg"> -->
-        <img width="800" src="assets/images/sim_summary.jpg">
+        <h2 style="margin-bottom: 5px;">Simulation settings</h2>
+        <p style="font-size: x-large; margin-bottom: auto;">\(\alpha = 0.05\), \(power = 0.80\)</p>
         <p>Design: two different optimal two-stage designs to generate e.g., \(n_{long}\) and \(r_1\)</p>
-        <img class="next" width="370" src="assets/images/optimal_design.jpg">
+        <img width="450" src="assets/images/design2.jpg">
+        <!-- <img width="800" src="assets/images/optimal_design.jpg"> -->
+        <div class="next">
+            <p style="margin-bottom: 0px;"><b>Setting 1: </b></p>
+            <img width="880" src="assets/images/sim_summary.jpg">
+        </div>
         <!-- <p class="next">\(n_{extra}:\) number of participants with partial information at interim</p> -->
     </section>
 
     <section class="slide">
+        <h2 style="margin-bottom: 5px;">Simulation settings</h2>
+        <p style="font-size: x-large; margin-bottom: auto;">\(\alpha = 0.05\), \(power = 0.80\)</p>
+        <p>Design: two different optimal two-stage designs to generate e.g., \(n_{long}\) and \(r_1\)</p>
+        <img width="450" src="assets/images/design1.jpg">
+        <div class="next">
+            <p style="margin-bottom: 0px;"><b>Setting 2:</b></p>
+            <img width="930" src="assets/images/setting2_sim.jpg">
+        </div>
+        <!-- <p class="next">\(n_{extra}:\) number of participants with partial information at interim</p> -->
+    </section>
+
+
+    <section class="slide">
         <h2 style = "margin-bottom: 5px;">Setting 1 - Under the null hypothesis</h2>
         <div>
-            <img class="next" style="position: absolute;" width="700" src="assets/images/setting1_prt_Type I error_1.png">
-            <img class="next" style="position: absolute;" width="700" src="assets/images/setting1_prt_Type I error_2.png">
-            <img class="next" style="position: absolute;" width="700" src="assets/images/setting1_prt_Type I error_3.png">
-            <img class="next" style="position: absolute;" width="700" src="assets/images/setting1_prt_Type I error_4.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Type I error_1.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Type I error_2.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Type I error_3.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Type I error_4.png">
         </div>
             <!-- 
             <div>
@@ -1451,10 +1451,10 @@
     <section class="slide">
         <h2 style = "margin-bottom: 5px;">Setting 1 - Under the alternative hypothesis</h2>
         <div>
-            <img class="next" style="position: absolute;" width="700" src="assets/images/setting1_prt_Power_1.png">
-            <img class="next" style="position: absolute;" width="700" src="assets/images/setting1_prt_Power_2.png">
-            <img class="next" style="position: absolute;" width="700" src="assets/images/setting1_prt_Power_3.png">
-            <img class="next" style="position: absolute;" width="700" src="assets/images/setting1_prt_Power_4.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Power_1.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Power_2.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Power_3.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Power_4.png">
         </div>
             <!-- <div>
                 <math display="block">
@@ -1574,7 +1574,7 @@
 
     <section class="slide">
         <h2>Discussion</h2>
-        <b>Advantages of the proposed method, depend on: </b>
+        <b>Additional gain of the proposed method, depends on: </b>
         <ol>
             <ul>
                 <li class="next">Proportion of additional participants in the pipeline</li>
@@ -1587,12 +1587,13 @@
                 </ol>
                 <ul>
                     <li class="next">Predictivity of baseline covariates and short-term endpoint</li>
-                    <li class="next">Model mispecification</li>
+                    <li class="next">Model misspecification</li>
                 </ul>
                 <ol>
                     <ul>
                         <li class="next" style="font-size: 25px; line-height: normal;">
-                            Extension: data adaptive methods to help build the models (see e.g., Van Lancker et al., 2024)
+                            Extension: data-adaptive methods to help build the models 
+                            <br>(see e.g., Van Lancker et al., 2024)
                         </li>
                     </ul>
                 </ol>
@@ -1605,16 +1606,17 @@
         <ol>
             <ul>
                 <li class="next" style="line-height: normal;">Calculate sample size as if no power gain occured</li>
-                <li class="next">Type I error rate inflated in small sample sizes</li>
+                <li class="next">Type I error rate inflated in small sample</li>
                 <ol>
                     <ul>
                         <li class="next">Estimator's variance leans on asymptotic theory</li>
-                        <li class="next" style="line-height: normal;">Decision at interim relies on an approximation of the standard 
+                        <li class="next" style="line-height: normal;">Decision at interim relies on approximation of standard 
                             normal distribution </li>
                         <ol>
                             <ul>
                                 <li class="next" style="line-height: normal; margin-top: 15px;">Alternatives: exact logistic regression,
-                                    firth correction, bayesian logistic regression</li>
+                                    Firth correction, 
+                                    <br> and Bayesian logistic regression</li>
                             </ul>
                         </ol>
                     </ul>
