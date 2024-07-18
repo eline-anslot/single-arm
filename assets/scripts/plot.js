@@ -10,6 +10,8 @@ window.MathJax = {
                 swapdata3 = init_plot("simon", 
                     generate_data_stopped_recruitment(),
                     width - marginRight + 0.5)
+                add_legend(swapdata3);
+
                 interactivity_formula(swapdata3,
                     "outcome-simon",
                     swapdata3.long_time,
@@ -42,16 +44,21 @@ window.MathJax = {
                     generate_data_stopped_recruitment(),
                     width - marginRight + 0.5);
                 swap_data(swapdata)
+                add_legend(swapdata)
 
                 swapdata2 = init_plot("swap2", 
                     generate_data_stopped_recruitment(),
                     generate_data_stopped_recruitment()[7].long_time + 0.5)
+                add_legend(swapdata2)
 
                 reducing_trial_duration = init_plot("reducing",
                     generate_data_stopped_recruitment(),
                     generate_data_stopped_recruitment()[7].long_time + 0.5);
+                add_legend(reducing_trial_duration)
 
                 covariate_adj_plot = init_plot("cov_adj");
+                add_legend(covariate_adj_plot)
+
                 // gsb_plot = init_plot("gsb");
                 // interactivity_formula(gsb_plot,
                 //     "outcome-gsb",
@@ -282,9 +289,9 @@ function add_legend(plot) {
     plot.svg.append("circle").attr("cx", x).attr("cy", y).attr("r", radius).style("fill", baseline_color)
     plot.svg.append("circle").attr("cx", x).attr("cy", y + offset).attr("r", radius).style("fill", short_color)
     plot.svg.append("circle").attr("cx", x).attr("cy", y + 2*offset).attr("r", radius).style("fill", long_color)
-    plot.svg.append("text").attr("x", x_text).attr("y", y + 3).text("X: baseline covariates").style("font-size", "13px").attr("alignment-baseline","middle")
-    plot.svg.append("text").attr("x", x_text).attr("y", y + offset + 3).text("S: short-term endpoints").style("font-size", "13px").attr("alignment-baseline","middle")
-    plot.svg.append("text").attr("x", x_text).attr("y", y + 2*offset+ 3).text("Y: long-term endpoints").style("font-size", "13px").attr("alignment-baseline","middle")
+    plot.svg.append("text").attr("x", x_text).attr("y", y + 3).text("X: baseline covariates").style("font-size", "15px").attr("alignment-baseline","middle")
+    plot.svg.append("text").attr("x", x_text).attr("y", y + offset + 3).text("S: short-term endpoint").style("font-size", "15px").attr("alignment-baseline","middle")
+    plot.svg.append("text").attr("x", x_text).attr("y", y + 2*offset+ 3).text("Y: long-term endpoint").style("font-size", "15px").attr("alignment-baseline","middle")
 }
 
 function draw_connection_lines(svg, data, opacity) {
