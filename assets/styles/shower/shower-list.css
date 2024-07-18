@@ -1,6 +1,7 @@
 /* Shower List */
 
 .shower.list {
+    height: 10000px !important;
     --shower-list-block: calc(
         var(--slide-gap) *
         var(--slide-scale)
