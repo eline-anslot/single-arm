@@ -66,54 +66,8 @@
             <li>Discussion</li>
         </ol>
         <img class="place bottom left" style="width: 100px; margin: 0px 0px 10px 10px" src="pictures/ugent-en.png">
-
     </section>
-
-    <!-- <section class="slide" id="single_arm">
-        <h2>Single-arm trials with multi-stage designs</h2>
-        <div class="columns two">
-            <div>
-                <svg id="single_arm"></svg>
-            </div>
-            <div>
-                <math display="block">
-                    <mrow>
-                        <msub>
-                            <mi>H</mi>
-                            <mn>0</mn>
-                        </msub>
-                        <mo lspace="0.2222em" rspace="0.2222em">:</mo>
-                        <mi>μ</mi>
-                        <mo>≤</mo>
-                        <msub>
-                            <mi>μ</mi>
-                            <mn>0</mn>
-                        </msub>
-                    </mrow>
-                </math>
-                <math display="block">
-                    <mrow>
-                        <msub>
-                            <mi>H</mi>
-                            <mn>A</mn>
-                        </msub>
-                        <mo lspace="0.2222em" rspace="0.2222em">:</mo>
-                        <mi>μ</mi>
-                        <mo>&gt;</mo>
-                        <msub>
-                            <mi>μ</mi>
-                            <mn>0</mn>
-                        </msub>
-                    </mrow>
-                </math>
-                <div class="button-group">
-                    <button type="button" onclick="all_interim(single_arm_plot, undefined)">At interim</button>
-                    <button type="button" onclick="show_all(single_arm_plot);">End of trial</button>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
+    
     <section class="slide" id="swap">
         <h2>Single-arm trials with multi-stage designs</h2>
         <div class="columns two">
@@ -121,11 +75,25 @@
                 <svg id="swap" class="data1"></svg>
             </div>
             <div class="next">
-                <p style="margin-bottom: inherit;">Commonly used designs:</p>
+                <p style="margin-bottom: inherit;">Single-arm trials often used when:</p>
                 <ol>
                     <ul>
-                        <li style="font-size: 18px;">Group sequential designs</li>
-                        <li style="font-size: 18px;">Simon's two-stage designs</li>
+                        <li style="font-size: 18px;" class="next">Few participants available</li>
+                        <li style="font-size: 18px;" class="next">Ethical reasons</li>
+                        <li style="font-size: 18px; line-height: 28px;" class="next">Effect under SoC well known, 
+                            <br> e.g., in oncology</li>
+                    </ul>
+                </ol>
+                <p style="margin-bottom: inherit; line-height: 28px;" class = "next">
+                    Multi-stage designs allow stopping an ongoing trial for futility and/or efficacy.
+                </p>
+                <p style="margin-bottom: inherit; margin-top: revert;" class = "next">
+                    Commonly used designs:
+                </p>
+                <ol>
+                    <ul>
+                        <li style="font-size: 18px;" class = "next">Group sequential designs</li>
+                        <li style="font-size: 18px;" class = "next">Simon's two-stage designs</li>
                     </ul>
                 </ol>
                 <!-- <button type="button" onclick="show_all(reducing_trial_duration)">Reset </button>            -->
@@ -1246,6 +1214,80 @@
         </div>
     </section>
 
+    <!-- <section class="slide" id="proposed3">
+        <h2>Proposed method - Decision at the final stage</h2>
+        <div style="display: flex !important; flex-direction: column; justify-content: space-between; text-align: center">
+            <div ><p><b>Decision at the final stage:</b></p>
+            <math display="block">
+                <mrow>
+                    <msub>
+                        <mi>Z</mi>
+                        <mrow>
+                            <mi>f</mi>
+                            <mi>i</mi>
+                            <mi>n</mi>
+                        </mrow>
+                    </msub>
+                    <mo>=</mo>
+                    <mfrac>
+                        <mrow>
+                            <msub>
+                                <mover>
+                                    <mi>p</mi>
+                                    <mo stretchy="false" class="tml-xshift" style="math-style:normal;math-depth:0;">
+                                        ^</mo>
+                                </mover>
+                                <mrow>
+                                    <mi>f</mi>
+                                    <mi>i</mi>
+                                    <mi>n</mi>
+                                </mrow>
+                            </msub>
+                            <mo>−</mo>
+                            <msub>
+                                <mi>p</mi>
+                                <mn>0</mn>
+                            </msub>
+                        </mrow>
+                        <mrow>
+                            <mi>S</mi>
+                            <mi>E</mi>
+                            <mo fence="false" symmetric="true" minsize="1.2em" maxsize="1.2em">(</mo>
+                            <msub>
+                                <mover>
+                                    <mi>p</mi>
+                                    <mo stretchy="false" class="tml-xshift" style="math-style:normal;math-depth:0;">
+                                        ^</mo>
+                                </mover>
+                                <mrow>
+                                    <mi>f</mi>
+                                    <mi>i</mi>
+                                    <mi>n</mi>
+                                </mrow>
+                            </msub>
+                            <mo fence="false" symmetric="true" minsize="1.2em" maxsize="1.2em">)</mo>
+                        </mrow>
+                    </mfrac>
+                </mrow>
+            </math>
+            <ol>
+                <ul>
+                    <li class="next" style="line-height: 28px; text-align: left; font-size: smaller;">
+                        With independent increment correction
+                    </li>
+                    <li class="next" style="line-height: 28px; text-align: left; font-size: smaller;">
+                        Corrected critical value, \(\Phi^{*-1}(1 - \alpha)\), to consider the information used at the interim analysis
+                    </li>
+                </ul>
+            </ol>
+            <p style="text-align: left"></p>
+            </div>
+        </div>
+        <p class = "next" style="font-size: smaller;"> 
+            \(H_0\) rejected when \(Z_{fin} > \Phi^{*-1}(1 - \alpha)\)
+        </p>
+    </section> -->
+
     <section class="slide">
         <h2>Proposed method</h2>
         <!-- <b>Decision at interim:</b> Z-test with critical value based on the \(PET(\mu_0)\)  -->
@@ -1351,10 +1393,10 @@
     <section class="slide">
         <h2 style = "margin-bottom: 5px;">Setting 1 - Under the null hypothesis</h2>
         <div>
-            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Type I error_1.png">
-            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Type I error_2.png">
-            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Type I error_3.png">
-            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Type I error_4.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt3_Type I error_1.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt3_Type I error_2.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt3_Type I error_3.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt3_Type I error_4.png">
         </div>
             <!-- 
             <div>
@@ -1452,10 +1494,10 @@
     <section class="slide">
         <h2 style = "margin-bottom: 5px;">Setting 1 - Under the alternative hypothesis</h2>
         <div>
-            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Power_1.png">
-            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Power_2.png">
-            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Power_3.png">
-            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt_Power_4.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt3_Power_1.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt3_Power_2.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt3_Power_3.png">
+            <img class="next" style="position: absolute;" width="800" src="assets/images/setting1_prt3_Power_4.png">
         </div>
             <!-- <div>
                 <math display="block">
@@ -1600,9 +1642,12 @@
                 </ol>
             </ul>
         </ol>
+        <b class="next">
+            Calculate sample size as if no power gain occured
+        </b>
     </section>
 
-    <section class="slide">
+    <!-- <section class="slide">
         <h2>Discussion</h2>
         <ol>
             <ul>
@@ -1625,7 +1670,7 @@
             </ul>
         </ol>
         
-    </section>
+    </section> -->
 
     <!-- <section class="slide">
         <h2>Discussion</h2>
@@ -1641,6 +1686,7 @@
     <section class="slide">
         <h2>Thank you for your attention</h2>
         <h2>Questions?</h2>
+        <img style="width: 400px; position: absolute; transform: translate(550px, -68px);" src="assets/images/QRcode.png">
         <img class="place bottom left" style="width: 100px; margin: 0px 0px 10px 10px" src="pictures/ugent-en.png">
     </section>
 

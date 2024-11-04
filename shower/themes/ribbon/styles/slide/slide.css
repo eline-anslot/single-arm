@@ -46,15 +46,15 @@
 
 .slide::after {
     position: absolute;
-    top: 0;
-    left: 875px;
+    top: 90%;
+    left: 90%;
     box-sizing: border-box;
     padding-top: 15px;
     width: var(--ribbon-size);
     height: calc(var(--ribbon-size) * 2);
-    background-image: url('ribbon.svg');
+    background-image: none;
     background-size: cover;
-    color: white;
+    color: black;
     counter-increment: slide;
     content: counter(slide);
     text-align: center;
