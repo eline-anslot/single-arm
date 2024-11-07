@@ -242,7 +242,7 @@
                             </math>
                             <p>with \(Z\) compared to cut-off to stop a trial for futility or efficacy based on 
                             e.g., Pocock (1977), O’Brien and Fleming (1979) or 
-                            Lan and DeMets (1983) \(\alpha-\) or \(\beta-\) error spending functions </p>
+                            Lan and DeMets (1983) \(\alpha-\) or \(\beta-\) spending functions </p>
                         </li>
                     </ul>
                 </ol>
@@ -610,10 +610,11 @@
                             </msub>
                             <mo>+</mo>
                             <mrow>
-                                <msub>
+                                <msubsup>
                                     <mi>𝛃</mi>
                                     <mn>𝟏</mn>
-                                </msub>
+                                    <mo lspace="0em" rspace="0em" class="tml-prime">′</mo>
+                                </msubsup>
                                 <mi class="baseline" id=x_gr1> 𝐗</mi>
                             </mrow>
                             <mo>+</mo>
@@ -652,10 +653,11 @@
                                     </mover>
                                     <mo>+</mo>
                                     <mover>
-                                        <msub>
+                                        <msubsup>
                                             <mi>𝛃</mi>
                                             <mn>𝟏</mn>
-                                        </msub>
+                                            <mo lspace="0em" rspace="0em" class="tml-prime">′</mo>
+                                        </msubsup>
                                         <mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo>
                                     </mover>
                                     <mi class="baseline" id=x_gr1_2>𝐗</mi>
@@ -711,10 +713,11 @@
                             </msub>
                             <mo>+</mo>
                             <mrow>
-                                <msub>
+                                <msubsup>
                                     <mi>𝛄</mi>
                                     <mn>𝟏</mn>
-                                </msub>
+                                    <mo lspace="0em" rspace="0em" class="tml-prime">′</mo>
+                                </msubsup>
                                 <mi class="baseline" id="x_gr12">𝐗</mi>
                             </mrow>
                         </mrow>
@@ -729,7 +732,7 @@
                             </mover>
                             <msup>
                                 <mrow></mrow>
-                                <mo lspace="0em" rspace="0em" class="tml-prime">′</mo>
+                                <mo lspace="0em" rspace="0em" class="tml-prime">*</mo>
                             </msup>
                             <mo>=</mo>
                             <msup>
@@ -750,10 +753,11 @@
                                 </mover>
                                 <mo>+</mo>
                                 <mover>
-                                    <msub>
+                                    <msubsup>
                                         <mi>𝛄</mi>
                                         <mn>𝟏</mn>
-                                    </msub>
+                                        <mo lspace="0em" rspace="0em" class="tml-prime">′</mo>
+                                    </msubsup>
                                     <mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo>
                                 </mover>
                                 <mi class="baseline" id="x_gr123">𝐗</mi>
@@ -824,7 +828,7 @@
                         <mi>i</mi>
                         <msup>
                             <mrow></mrow>
-                            <mo lspace="0em" rspace="0em" class="tml-prime">′</mo>
+                            <mo lspace="0em" rspace="0em" class="tml-prime">*</mo>
                         </msup>
                         </msubsup>
                     </mrow>
@@ -1172,7 +1176,7 @@
                 <p class="next" style="line-height: 28px; text-align: left; margin-bottom: 130px;"><b>In Group Sequential Design:</b>
                     <br>\(Z_{int}\) compared to cut-off to stop a trial for futility or efficacy based on 
                     e.g., <br> Pocock (1977), O’Brien and Fleming (1979) or 
-                    <br>Lan and DeMets (1983) \(\alpha-\) or \(\beta-\) error spending functions
+                    <br>Lan and DeMets (1983) \(\alpha-\) or \(\beta-\) spending functions
                 </p>
             </div>
             <div style="text-align: center" class="next">
@@ -1208,7 +1212,11 @@
                         <mo form="postfix" stretchy="false">]</mo>
                     </mrow>
                 </math>
-                <p style="margin-bottom: auto;"> with \(PET(p_0) = B(r_1; n_{long}, p_0)\)</p>
+                <p style="margin-bottom: auto;"> with \(PET(p_0) = B(r_1; n_{long}, p_0)\)
+                    <br> with B(.) the cumulative binomial distribution
+                </p>
+
+                
                 <img width="450" src="assets/images/pet.png">
             </div>
         </div>
@@ -1376,19 +1384,6 @@
         </div>
         <!-- <p class="next">\(n_{extra}:\) number of participants with partial information at interim</p> -->
     </section>
-
-    <section class="slide">
-        <h2 style="margin-bottom: 5px;">Simulation settings</h2>
-        <p style="font-size: x-large; margin-bottom: auto;">\(\alpha = 0.05\), \(power = 0.80\)</p>
-        <p>Design: two different optimal two-stage designs to generate e.g., \(n_{long}\) and \(r_1\)</p>
-        <img width="450" src="assets/images/design1.jpg">
-        <div class="next">
-            <p style="margin-bottom: 0px;"><b>Setting 2:</b></p>
-            <img width="930" src="assets/images/setting2_sim.jpg">
-        </div>
-        <!-- <p class="next">\(n_{extra}:\) number of participants with partial information at interim</p> -->
-    </section>
-
 
     <section class="slide">
         <h2 style = "margin-bottom: 5px;">Setting 1 - Under the null hypothesis</h2>
@@ -1604,6 +1599,18 @@
             <img width="700" src="assets/images/setting2.png">
         </div>
     </section> -->
+
+    <section class="slide">
+        <h2 style="margin-bottom: 5px;">Simulation settings</h2>
+        <p style="font-size: x-large; margin-bottom: auto;">\(\alpha = 0.05\), \(power = 0.80\)</p>
+        <p>Design: two different optimal two-stage designs to generate e.g., \(n_{long}\) and \(r_1\)</p>
+        <img width="450" src="assets/images/design1.jpg">
+        <div class="next">
+            <p style="margin-bottom: 0px;"><b>Setting 2:</b></p>
+            <img width="930" src="assets/images/setting2_sim.jpg">
+        </div>
+        <!-- <p class="next">\(n_{extra}:\) number of participants with partial information at interim</p> -->
+    </section>
 
     <section class="slide">
         <h2 style = "margin-bottom: 20px;">Setting 2 - Model mispecification</h2>
